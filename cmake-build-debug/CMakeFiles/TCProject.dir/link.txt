@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2020.2.3\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\TCProject.dir/objects.a
+C:\PROGRA~2\mingw32\bin\ar.exe cr CMakeFiles\TCProject.dir/objects.a @CMakeFiles\TCProject.dir\objects1.rsp
+C:\PROGRA~2\mingw32\bin\G__~1.EXE -g   -Wl,--whole-archive CMakeFiles\TCProject.dir/objects.a -Wl,--no-whole-archive  -o TCProject.exe -Wl,--out-implib,libTCProject.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\TCProject.dir\linklibs.rsp

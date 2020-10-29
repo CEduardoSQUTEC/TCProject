@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2020.2.3\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\Teo_Py.dir/objects.a
+C:\PROGRA~2\mingw32\bin\ar.exe cr CMakeFiles\Teo_Py.dir/objects.a @CMakeFiles\Teo_Py.dir\objects1.rsp
+C:\PROGRA~2\mingw32\bin\G__~1.EXE -g   -Wl,--whole-archive CMakeFiles\Teo_Py.dir/objects.a -Wl,--no-whole-archive  -o Teo_Py.exe -Wl,--out-implib,libTeo_Py.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Teo_Py.dir\linklibs.rsp
