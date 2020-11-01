@@ -1,3 +1,0 @@
-C:/Users/Jean Paul/CLionProjects/TCProject/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-C:/Users/Jean Paul/CLionProjects/TCProject/cmake-build-debug/CMakeFiles/TCProject.dir
-C:/Users/Jean Paul/CLionProjects/TCProject/cmake-build-debug/CMakeFiles/edit_cache.dir
