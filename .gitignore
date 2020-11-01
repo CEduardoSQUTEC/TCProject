@@ -4,4 +4,4 @@
 *.idea
 *.x
 *.o
-CMakeList.txt
+CMakeLists.txt
