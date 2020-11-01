@@ -1,4 +1,6 @@
-//
-// Created by ceduardosq on 11/1/20.
-//
+#include <iostream>
 
+int main() {
+    std::cout << "hi!\n";
+    return 0;
+}
