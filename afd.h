@@ -31,38 +31,42 @@ public:
 
 
     auto equivalentStates(){
-        std::vector<std::vector<bool>> equivalent;
+        std::unordered_map<Q, std::unordered_map<Q, bool>> equivalent;
+        std::vector<Q> states;
 
-
-        for (int i = 0; i < states_.size(); i++){
-            std::vector<bool> temp (states_.size(), false);
-            equivalent.push_back(temp);
+        for(auto it: states_){
+            equivalent[it.first][it.first] = false;
+            for(auto t2: states_){
+                equivalent[it.first][t2.first] = false;
+            }
         }
 
 
 
-        for(int i = 0; i < states_.size(); i++){
-            equivalent[i][i] = true;
-            for(int j = 0; j < i ; j++){
-                if(finalStates_.count(i) && !finalStates_.count(j)
-                || finalStates_.count(j) && !finalStates_.count(i)){
-                    equivalent[i][j] = true;
-                    equivalent[j][i] = true;
+
+
+        for(auto i: equivalent){
+            equivalent[i.first][i.first] = true;
+            for(auto j :i.second){
+                if(finalStates_.count(i.first) && !finalStates_.count(j.first)
+                || finalStates_.count(j.first) && !finalStates_.count(i.first)){
+                    equivalent[i.first][j.first] = true;
+                    equivalent[j.first][i.first] = true;
                 }
 
             }
         }
 
-        for(int i = 0; i < states_.size(); i++){
-            for(int j = 0; j < i ; j++){
+        for(auto i: equivalent){
+            for(auto j : i.second){
                 std::vector<std::pair<int,int>> vec;
-                vec.push_back({states_[i][0], states_[j][0]});
-                vec.push_back({states_[i][1], states_[j][1]});
+                vec.push_back({states_[i.first][0], states_[j.first][0]});
+                vec.push_back({states_[i.first][1], states_[j.first][1]});
 
                 for(auto it: vec){
                     if(it.first != it.second && equivalent[it.first][it.second]){
-                        equivalent[i][j] = true;
-                        equivalent[j][i] = true;
+                        equivalent[i.first][j.first] = true;
+                        equivalent[j.first][i.first] = true;
                     }
                 }
             }

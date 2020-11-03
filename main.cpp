@@ -21,10 +21,11 @@ int main() {
 
     auto res = myAfd.equivalentStates();
 
-    for(auto vec: res){
-        for(auto it: vec)
-            std::cout<<it<<" ";
-        std::cout<<'\n';
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n;j++){
+            std::cout<<res[i][j]<<" ";
+        }
+        std::cout<<std::endl;
     }
 
     return 0;
