@@ -19,14 +19,16 @@ int main() {
         myAfd.addTransition(p, a, q);
     }
 
-    auto res = myAfd.equivalentStates();
+//    auto res = myAfd.equivalentStates();
+//
+//    for(int i = 0; i < n; i++){
+//        for(int j = 0; j < n;j++){
+//            std::cout<<res[i][j]<<" ";
+//        }
+//        std::cout<<std::endl;
+//    }
 
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < n;j++){
-            std::cout<<res[i][j]<<" ";
-        }
-        std::cout<<std::endl;
-    }
+    myAfd.minimization();
 
     return 0;
 }
