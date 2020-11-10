@@ -18,7 +18,7 @@ using transition = std::unordered_map<alphabet, Q>;
 class af {};
 
 struct afn {
-    std::unordered_set<Q> initialState_{};
+    Q initialState_{};
     std::unordered_set<Q> finalStates_{};
     std::unordered_map<alphabet, std::unordered_multimap<alphabet, Q>> states_;
 };
@@ -52,6 +52,8 @@ public:
         afn tAfn;
         tAfn.states_ = invert();
         tAfn.finalStates_.insert(initialState_);
+        Q newState = states_.size();
+        for (const auto &e: finalStates_) tAfn.states_[newState].insert({-1, e});
     }
 
     auto equivalentStates() {
