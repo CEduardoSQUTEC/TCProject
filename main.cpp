@@ -10,7 +10,7 @@ int main() {
         std::cin >> i;
         fState.insert(i);
     }
-    afd myAfd(iState, fState);
+    dfa myAfd(iState, fState);
 
     int tmp = 2 * n;
     while (tmp--) {

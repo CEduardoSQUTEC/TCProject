@@ -10,6 +10,9 @@
 #include <iostream>
 #include <unordered_map>
 #include <queue>
+#include <algorithm>
+#include <bits/stdc++.h>
+
 
 using alphabet = int;
 using Q = int;
@@ -64,17 +67,19 @@ public:
 //        return res;
 //    }
 
+
+    friend nfa reverse(const dfa &a);
+
+    friend dfa subset(nfa &na);
+
     auto minimization() {
-//        auto &g = subset(reverse());
-//        initialState_ = g.initialState;
-//        afn tAfn;
-//        tAfn.states_ = invert();
-//        tAfn.finalStates_.insert(initialState_);
-//        Q newState = states_.size();
-//        for (const auto &e: finalStates_) tAfn.states_[newState].insert({-1, e});
+        auto res = reverse(*this);
+
+        std::cout<<"asd";
+
     }
 
-    // =============================================================================
+
 
     auto equivalentStates() {
         std::unordered_map<Q, std::unordered_map<Q, bool>> equivalent;
@@ -120,9 +125,6 @@ public:
         }
     }
 
-    friend nfa reverse(const dfa &a);
-
-    friend dfa subset(nfa &na);
 };
 
 nfa reverse(const dfa &a) {
@@ -139,39 +141,65 @@ nfa reverse(const dfa &a) {
 }
 
 dfa subset(nfa &na) {
-    std::unordered_set<Q> qInitial;
-    qInitial.insert(na.initialState_);
-    std::unordered_set<Q> q0 = na.cl(qInitial);
-    std::queue<std::unordered_set<Q>> delta;
-    delta.push(q0);
-    Q s = 0;
-    std::unordered_set<Q> fs;
-    dfa a(s, fs);
+//    std::unordered_set<Q> qInitial;
+//    qInitial.insert(na.initialState_);
+//    std::unordered_set<Q> q0 = na.cl(qInitial);
+//    std::queue<std::pair<std::unordered_set<Q>,Q>> delta;
+//    std::vector<std::unordered_set<Q>> vis;
+//
+//
+//    Q s = 0;
+//    delta.push({q0,s});
+//    vis.push_back(q0);
+//
+//    std::unordered_set<Q> fs;
+//    dfa a(s, fs);
+//
+//
+//
+//    while (!delta.empty()) {
+//        auto &states = delta.front();
+//
+//        if(!a.states_.count(states.second)) {
+//            std::unordered_set<Q> temp;
+//
+//
+//            //clousure in 0
+//            for (auto state : states.first)
+//                temp.insert(na.states_[state][0].begin(), na.states_[state][0].end());
+//            temp = na.cl(temp);
+//
+//
+//            auto it = std::find(vis.begin(), vis.end(), temp);
+//            if (it == vis.end()) {
+//                a.addTransition(states.second, 0, vis.size());
+//                vis.push_back(temp);
+//            } else {
+//                Q index = it - vis.begin();
+//                a.addTransition(states.second, 0, index);
+//            }
+//
+//            temp.clear();
+//            //clousure in 1
+//            for (auto state : states.first)
+//                temp.insert(na.states_[state][1].begin(), na.states_[state][1].end());
+//            temp = na.cl(temp);
+//
+//
+//            it = std::find(vis.begin(), vis.end(), temp);
+//            if (it == vis.end()) {
+//                a.addTransition(states.second, 1, vis.size());
+//                vis.push_back(temp);
+//            } else {
+//                Q index = it - vis.begin();
+//                a.addTransition(states.second, 1, index);
+//            }
+//        }
+//
+//        delta.pop();
+//    }
 
-    std::vector<std::unordered_set<Q>> vis;
-    while (!delta.empty()) {
-        auto &states = delta.front();
-        if(std::find(vis.begin(), vis.end(), states) == vis.end()) //if not found
-        {
-            unordered_set<Q> temp0, temp1;
-            for(auto state : states)
-                temp0.insert(na.states_[state][0]);
-            temp0 = cl(temp0);
-            if(std::find(vis.begin(), vis.end(), temp0) == vis.end())
-            {
-                delta.push(temp0);
-                
-            }
-            
-            for(auto state : states)
-                temp1.insert(na.states_[state][1]);
-            //a.addTransition(s, 0, ++s);
-            //void addTransition(Q beginState, alphabet symbol, Q endState) { states_[beginState][symbol] = endState; };
-        }
-        vis.emplace_back(states);
-        delta.pop();
-    }
-    return;
+    return {};
 }
 
 
