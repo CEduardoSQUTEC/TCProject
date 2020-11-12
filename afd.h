@@ -13,48 +13,58 @@
 
 using alphabet = int;
 using Q = int;
-using transition = std::unordered_map<alphabet, Q>;
 
-class af {};
+class dfa;
 
-struct afn {
+class nfa {
     Q initialState_{};
     std::unordered_set<Q> finalStates_{};
-    std::unordered_map<alphabet, std::unordered_multimap<alphabet, Q>> states_;
+    std::unordered_map<Q, std::unordered_map<alphabet, std::set<Q>>> states_{};
+
+public:
+    nfa(Q initialState, std::unordered_set<Q> &finalState) : initialState_(initialState), finalStates_(finalState) {};
+
+    void addTransition(Q beginState, alphabet symbol, Q endState) { states_[beginState][symbol].insert(endState); };
+
+    friend nfa reverse(const dfa &a);
+
+    friend dfa subset(const nfa &na);
 };
 
-class afd {
+class dfa {
     Q initialState_{};
     std::unordered_set<Q> finalStates_{};
-    std::unordered_map<Q, transition> states_{};
+    std::unordered_map<Q, std::unordered_map<alphabet, Q>> states_{};
 public:
     // random afd constructor
-    afd() = default;
+    dfa() = default;
 
-    afd(Q initial, std::unordered_set<Q> &finalState) : initialState_(initial), finalStates_(finalState) {};
+    dfa(Q initial, std::unordered_set<Q> &finalState) : initialState_(initial), finalStates_(finalState) {};
 
-    void addTransition(Q beginState, alphabet symbol, Q endState) {
-        states_[beginState][symbol] = endState;
-    };
+    void addTransition(Q beginState, alphabet symbol, Q endState) { states_[beginState][symbol] = endState; };
 
-    std::unordered_map<alphabet, std::unordered_multimap<alphabet, Q> > invert() {
-        // i do this because afn
-        std::unordered_map<alphabet, std::unordered_multimap<alphabet, Q> > res;
-        for (auto it: states_) {
-            for (auto t2: it.second) {
-                res[t2.second].insert({t2.first, it.first});
-            }
-        }
-        return res;
-    }
+//    std::unordered_map<alphabet, std::unordered_multimap<alphabet, Q> > reverse() {
+//        // i do this because afn
+//        std::unordered_map<alphabet, std::unordered_multimap<alphabet, Q> > res;
+//        for (auto it: states_) {
+//            for (auto t2: it.second) {
+//                res[t2.second].insert({t2.first, it.first});
+//            }
+//        }
+//        return res;
+//    }
 
     auto minimization() {
-        afn tAfn;
-        tAfn.states_ = invert();
-        tAfn.finalStates_.insert(initialState_);
-        Q newState = states_.size();
-        for (const auto &e: finalStates_) tAfn.states_[newState].insert({-1, e});
+//        auto &g = subset(reverse());
+//        initialState_ = g.initialState;
+//        afn tAfn;
+//        tAfn.states_ = invert();
+//        tAfn.finalStates_.insert(initialState_);
+//        Q newState = states_.size();
+//        for (const auto &e: finalStates_) tAfn.states_[newState].insert({-1, e});
     }
+
+    // =============================================================================
 
     auto equivalentStates() {
         std::unordered_map<Q, std::unordered_map<Q, bool>> equivalent;
@@ -99,7 +109,30 @@ public:
             }
         }
     }
+
+    friend nfa reverse(const dfa &a);
+
+    friend dfa subset(const nfa &na);
 };
+
+nfa reverse(const dfa &a) {
+    Q initialState = a.states_.size();
+    std::unordered_set<Q> finalStates;
+    finalStates.insert(a.initialState_);
+    nfa na(initialState, finalStates);
+    for (auto it: a.states_)
+        for (auto t2: it.second)
+            na.addTransition(t2.second, t2.first, it.first);
+    for (auto &s: a.finalStates_)
+        na.states_[initialState][-1].insert(s);
+    return na;
+}
+
+dfa subset(const nfa &na) {
+    dfa()
+
+    return;
+}
 
 
 #endif //TCPROJECT_AFD_H
