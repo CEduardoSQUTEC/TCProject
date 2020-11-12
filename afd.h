@@ -9,7 +9,7 @@
 #include <unordered_set>
 #include <iostream>
 #include <unordered_map>
-#include <set>
+#include <queue>
 
 using alphabet = int;
 using Q = int;
@@ -19,16 +19,26 @@ class dfa;
 class nfa {
     Q initialState_{};
     std::unordered_set<Q> finalStates_{};
-    std::unordered_map<Q, std::unordered_map<alphabet, std::set<Q>>> states_{};
+    std::unordered_map<Q, std::unordered_map<alphabet, std::unordered_set<Q>>> states_{};
 
 public:
     nfa(Q initialState, std::unordered_set<Q> &finalState) : initialState_(initialState), finalStates_(finalState) {};
 
     void addTransition(Q beginState, alphabet symbol, Q endState) { states_[beginState][symbol].insert(endState); };
 
+    std::unordered_set<Q> cl(std::unordered_set<Q> &set) {
+        std::unordered_set<Q> newSet;
+        for (auto &q: set) {
+            newSet.insert(q);
+            for (auto &qe: states_[q][-1])
+                newSet.insert(qe);
+        }
+        return newSet;
+    }
+
     friend nfa reverse(const dfa &a);
 
-    friend dfa subset(const nfa &na);
+    friend dfa subset(nfa &na);
 };
 
 class dfa {
@@ -112,7 +122,7 @@ public:
 
     friend nfa reverse(const dfa &a);
 
-    friend dfa subset(const nfa &na);
+    friend dfa subset(nfa &na);
 };
 
 nfa reverse(const dfa &a) {
@@ -128,10 +138,18 @@ nfa reverse(const dfa &a) {
     return na;
 }
 
-dfa subset(const nfa &na) {
-    dfa()
+dfa subset(nfa &na) {
+    std::unordered_set<Q> qInitial;
+    qInitial.insert(na.initialState_);
+    std::unordered_set<Q> q0 = na.cl(qInitial);
+    std::queue<std::unordered_set<Q>> delta;
+    delta.push(q0);
+    Q s = 0;
+    std::unordered_set<Q> fs;
+    dfa a(s, fs);
+    while (!delta.empty()) {
 
-    return;
+    }
 }
 
 
