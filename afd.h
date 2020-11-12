@@ -150,9 +150,26 @@ dfa subset(nfa &na) {
 
     std::vector<std::unordered_set<Q>> vis;
     while (!delta.empty()) {
-        auto &s = delta.front();
-        vis.push_back(s);
-
+        auto &states = delta.front();
+        if(std::find(vis.begin(), vis.end(), states) == vis.end()) //if not found
+        {
+            unordered_set<Q> temp0, temp1;
+            for(auto state : states)
+                temp0.insert(na.states_[state][0]);
+            temp0 = cl(temp0);
+            if(std::find(vis.begin(), vis.end(), temp0) == vis.end())
+            {
+                delta.push(temp0);
+                
+            }
+            
+            for(auto state : states)
+                temp1.insert(na.states_[state][1]);
+            //a.addTransition(s, 0, ++s);
+            //void addTransition(Q beginState, alphabet symbol, Q endState) { states_[beginState][symbol] = endState; };
+        }
+        vis.emplace_back(states);
+        delta.pop();
     }
     return;
 }
