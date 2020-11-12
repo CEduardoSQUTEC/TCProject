@@ -147,9 +147,14 @@ dfa subset(nfa &na) {
     Q s = 0;
     std::unordered_set<Q> fs;
     dfa a(s, fs);
+
+    std::vector<std::unordered_set<Q>> vis;
     while (!delta.empty()) {
+        auto &s = delta.front();
+        vis.push_back(s);
 
     }
+    return;
 }
 
 
