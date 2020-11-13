@@ -21,43 +21,43 @@ dfa dfa::minimization() {
         return sub;
     }
 
-std::unordered_map<Q, std::unordered_map<Q, bool>> dfa::equivalentStates() {
+std::vector<std::vector<bool>> dfa::equivalentStates(){
 
-        std::unordered_map<Q, std::unordered_map<Q, bool>> equivalent;
-        std::vector<Q> states;
+    std::vector<std::vector<bool>> equivalent;
 
-        for (auto it: states_) {
-            equivalent[it.first][it.first] = true;
-            for (auto t2: states_) {
-                equivalent[it.first][t2.first] = true;
-            }
-        }
-        for (auto i: equivalent) {
-            equivalent[i.first][i.first] = true; //consider removing it
-            for (auto j :i.second) {
-                if (finalStates_.count(i.first) && !finalStates_.count(j.first)
-                    || finalStates_.count(j.first) && !finalStates_.count(i.first)) {
-                    equivalent[i.first][j.first] = false;
-                    equivalent[j.first][i.first] = false;
-                }
-
-            }
-        }
-        for (auto i: equivalent) {
-            for (auto j : i.second) {
-                std::vector<std::pair<Q, Q>> vec;
-                vec.push_back({states_[i.first][0], states_[j.first][0]});
-                vec.push_back({states_[i.first][1], states_[j.first][1]});
-                for (auto it: vec) {
-                    if (it.first != it.second && !equivalent[it.first][it.second]) {
-                        equivalent[i.first][j.first] = false;
-                        equivalent[j.first][i.first] = false;
-                    }
-                }
-            }
-        }
-        return equivalent;
+    for (int i = 0; i < states_.size(); i++){
+        std::vector<bool> temp (states_.size(), true);
+        equivalent.push_back(temp);
     }
+
+    for(int i = 0; i < states_.size(); i++){
+        for(int j = 0; j < i ; j++){
+            if(finalStates_.count(i) && !finalStates_.count(j)
+               || finalStates_.count(j) && !finalStates_.count(i)){
+                equivalent[i][j] = false;
+                equivalent[j][i] = false;
+            }
+
+        }
+    }
+
+    for(int i = 0; i < states_.size(); i++){
+        for(int j = 0; j < i ; j++){
+            std::vector<std::pair<int,int>> vec;
+            vec.push_back({states_[i][0], states_[j][0]});
+            vec.push_back({states_[i][1], states_[j][1]});
+
+            for(auto it: vec){
+                if(it.first != it.second && !equivalent[it.first][it.second]){
+                    equivalent[i][j] = false;
+                    equivalent[j][i] = false;
+                }
+            }
+        }
+    }
+
+    return equivalent;
+}
 
 void dfa::printStates() {
         for (auto trans: states_) {
@@ -120,11 +120,10 @@ dfa subset(nfa &na) {
             }
 
             std::unordered_set<Q> temp;
-            //clousure in 0
+            
             for (auto state : states.first)
                 temp.insert(na.states_[state][0].begin(), na.states_[state][0].end());
             temp = na.cl(temp);
-
 
             auto it = std::find(vis.begin(), vis.end(), temp);
             if (it == vis.end()) {
@@ -137,11 +136,9 @@ dfa subset(nfa &na) {
                 Q index = it - vis.begin();
                 a.addTransition(states.second, 0, index);
                 delta.push({temp,index});
-
             }
-
             temp.clear();
-            //clousure in 1
+            
             for (auto state : states.first)
                 temp.insert(na.states_[state][1].begin(), na.states_[state][1].end());
             temp = na.cl(temp);

@@ -54,7 +54,7 @@ public:
 
     dfa minimization();
 
-    std::unordered_map<Q, std::unordered_map<Q, bool>> equivalentStates();
+    std::vector<std::vector<bool>> equivalentStates();
 
     void printStates();
 
