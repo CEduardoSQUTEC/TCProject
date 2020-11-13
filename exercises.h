@@ -1,8 +1,7 @@
 #ifndef EXERCISES_H
 #define EXERCISES_H
 
-#include <iostream>
-#include "afd.h"
+#include "afd.cpp"
 
 dfa buildAFN();
 void exercise1(dfa &myAfd);
