@@ -31,9 +31,12 @@ public:
     std::unordered_set<Q> cl(std::unordered_set<Q> &set) {
         std::unordered_set<Q> newSet;
         for (auto &q: set) {
-            newSet.insert(q);
-            for (auto &qe: states_[q][-1])
+            if(!states_[q].count(-1)){
+                newSet.insert(q);
+            }
+            else for (auto &qe: states_[q][-1])
                 newSet.insert(qe);
+
         }
         return newSet;
     }
@@ -74,6 +77,7 @@ public:
         auto res = reverse(*this);
         auto sub = subset(res);
         res = reverse(sub);
+        sub = subset(res);
 
 
 
@@ -134,9 +138,11 @@ nfa reverse(const dfa &a) {
     std::unordered_set<Q> finalStates;
     finalStates.insert(a.initialState_);
     nfa na(initialState, finalStates);
-    for (auto it: a.states_)
+    for (auto it: a.states_){
+        na.states_[it.first];
         for (auto t2: it.second)
             na.addTransition(t2.second, t2.first, it.first);
+    }
     for (auto &s: a.finalStates_)
         na.states_[initialState][-1].insert(s);
     return na;
@@ -167,7 +173,11 @@ dfa subset(nfa &na) {
         auto &states = delta.front();
 
         if(!a.states_.count(states.second)){
-            
+            for(auto it :  states.first){
+                if(na.finalStates_.count(it)){
+                    a.finalStates_.insert(states.second);
+                }
+            }
 
             std::unordered_set<Q> temp;
             //clousure in 0
