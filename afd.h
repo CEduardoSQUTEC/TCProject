@@ -28,6 +28,10 @@ public:
 
     void addTransition(Q beginState, alphabet symbol, Q endState) { states_[beginState][symbol].insert(endState); };
 
+    friend nfa reverse(const dfa &a);
+    
+    friend dfa subset(nfa &na);
+
     std::unordered_set<Q> cl(std::unordered_set<Q> &set) {
         std::unordered_set<Q> newSet;
         for (auto &q: set) {
@@ -41,8 +45,6 @@ public:
         return newSet;
     }
 
-    friend nfa reverse(const dfa &a);
-    friend dfa subset(nfa &na);
 };
 
 class dfa {
@@ -50,24 +52,12 @@ class dfa {
     std::unordered_set<Q> finalStates_{};
     std::unordered_map<Q, std::unordered_map<alphabet, Q>> states_{};
 public:
-    // random afd constructor
+    
     dfa() = default;
 
     dfa(Q initial, std::unordered_set<Q> &finalState) : initialState_(initial), finalStates_(finalState) {};
 
     void addTransition(Q beginState, alphabet symbol, Q endState) { states_[beginState][symbol] = endState; };
-
-//    std::unordered_map<alphabet, std::unordered_multimap<alphabet, Q> > reverse() {
-//        // i do this because afn
-//        std::unordered_map<alphabet, std::unordered_multimap<alphabet, Q> > res;
-//        for (auto it: states_) {
-//            for (auto t2: it.second) {
-//                res[t2.second].insert({t2.first, it.first});
-//            }
-//        }
-//        return res;
-//    }
-
 
     friend nfa reverse(const dfa &a);
 
@@ -79,14 +69,8 @@ public:
         res = reverse(sub);
         sub = subset(res);
 
-
-
-        std::cout<<"asd";
-
         return sub;
     }
-
-
 
     auto equivalentStates() {
         std::unordered_map<Q, std::unordered_map<Q, bool>> equivalent;
@@ -130,6 +114,15 @@ public:
                 std::cout << trans.first << " " << delta.first << " " << delta.second << "\n";
             }
         }
+    }
+
+    void print()
+    {
+        std::cout<<'\n'<<states_.size()<<' '<<initialState_<<' '<<finalStates_.size()<<' ';
+        for (auto it : finalStates_)
+            std::cout<<it<<' ';
+        std::cout<<'\n';
+        printStates();
     }
 
 };
@@ -228,6 +221,5 @@ dfa subset(nfa &na) {
 
     return a;
 }
-
 
 #endif //TCPROJECT_AFD_H
