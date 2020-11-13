@@ -73,8 +73,10 @@ public:
     }
 
     auto equivalentStates() {
+
         std::unordered_map<Q, std::unordered_map<Q, bool>> equivalent;
         std::vector<Q> states;
+
         for (auto it: states_) {
             equivalent[it.first][it.first] = true;
             for (auto t2: states_) {
@@ -82,7 +84,7 @@ public:
             }
         }
         for (auto i: equivalent) {
-            equivalent[i.first][i.first] = true;
+            equivalent[i.first][i.first] = true; //consider removing it
             for (auto j :i.second) {
                 if (finalStates_.count(i.first) && !finalStates_.count(j.first)
                     || finalStates_.count(j.first) && !finalStates_.count(i.first)) {
@@ -118,7 +120,7 @@ public:
 
     void print()
     {
-        std::cout<<'\n'<<states_.size()<<' '<<initialState_<<' '<<finalStates_.size()<<' ';
+        std::cout<<states_.size()<<' '<<initialState_<<' '<<finalStates_.size()<<' ';
         for (auto it : finalStates_)
             std::cout<<it<<' ';
         std::cout<<'\n';
