@@ -1,6 +1,6 @@
-#include <iostream>
+#include "exercises.h"
 
 int main() {
-    std::cout << "hi!\n";
+    execute();
     return 0;
 }
