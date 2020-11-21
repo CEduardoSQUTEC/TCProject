@@ -22,12 +22,8 @@ dfa dfa::minimization() {
 
 std::vector<std::vector<bool>> dfa::equivalentStates(){
 
-    std::vector<std::vector<bool>> equivalent;
-
-    for (int i = 0; i < states_.size(); i++){
-        std::vector<bool> temp (states_.size(), true);
-        equivalent.push_back(temp);
-    }
+    std::vector<std::vector<bool>> equivalent (states_.size(),
+                                               std::vector<bool>(states_.size(), true) );
 
     for(int i = 0; i < states_.size(); i++){
         for(int j = 0; j < i ; j++){
@@ -40,18 +36,47 @@ std::vector<std::vector<bool>> dfa::equivalentStates(){
         }
     }
 
-    for(int i = 0; i < states_.size(); i++){
-        for(int j = 0; j < i ; j++){
-            std::vector<std::pair<int,int>> vec;
-            vec.push_back({states_[i][0], states_[j][0]});
-            vec.push_back({states_[i][1], states_[j][1]});
+    while (true){
+        bool flag = true;
+        for(int i = 0; i < states_.size(); i++){
+            for(int j = 0; j < i ; j++){
+                std::vector<std::pair<int,int>> vec;
+                vec.emplace_back(states_[i][0], states_[j][0]);
+                vec.emplace_back(states_[i][1], states_[j][1]);
 
-            for(auto it: vec){
-                if(it.first != it.second && !equivalent[it.first][it.second]){
-                    equivalent[i][j] = false;
-                    equivalent[j][i] = false;
+                for(auto it: vec){
+                    if(equivalent[i][j]) {
+                        if (!equivalent[it.first][it.second]) {
+                            equivalent[i][j] = false;
+                            equivalent[j][i] = false;
+                            flag = false;
+                        }
+                    }
                 }
             }
+        }
+        if(flag) break;
+    }
+
+
+    return equivalent;
+}
+
+std::vector<std::vector<bool>> dfa::improvedEquivalentStates(){
+
+    std::vector<std::vector<bool>> equivalent (states_.size(),
+                                               std::vector<bool>(states_.size(), true) );
+
+
+    std::map< std::pair< Q,Q >, std::vector<std::pair<Q,Q> > > dependencies;
+    std::queue<std::pair<Q,Q>> toProcess;
+
+
+    // we begin by marking all trivial not equivalent states
+    // we also create de map of dependecies
+    for(int i = 0; i < states_.size(); i++){
+        for(int j = 0; j < i ; j++){
+            dependencies[ {states_[i][0] ,states_[j][0]}];
         }
     }
 

@@ -56,6 +56,8 @@ public:
 
     std::vector<std::vector<bool>> equivalentStates();
 
+    std::vector<std::vector<bool>> improvedEquivalentStates();
+
     void printStates();
 
     void print();
