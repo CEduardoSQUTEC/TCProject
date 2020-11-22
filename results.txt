@@ -1,0 +1,323 @@
+Ingrese el número de autómatas: 8
+Inserte un AFN:
+2 0 2 0 1
+0 0 0
+0 1 1
+1 0 0
+1 1 1
+
+EJERCICIO 1: Brzozowski
+1 0 1 0
+0 1 0
+0 0 0
+Tiempo de ejecución: 0.1265 ms
+
+EJERCICIO 2: Algoritmo de Equivalencia de estados
+1 1
+1 1
+Tiempo de ejecución: 0.021 ms
+
+EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
+1 1
+1 1
+Tiempo de ejecución: 0.0362 ms
+Inserte un AFN:
+3 0 2 1 2
+0 0 2
+0 1 0
+1 0 1
+1 1 0
+2 0 1
+2 1 0
+
+EJERCICIO 1: Brzozowski
+2 0 1 1
+1 1 0
+1 0 1
+0 1 0
+0 0 1
+Tiempo de ejecución: 0.1748 ms
+
+EJERCICIO 2: Algoritmo de Equivalencia de estados
+1 0 0
+0 1 1
+0 1 1
+Tiempo de ejecución: 0.0206 ms
+
+EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
+1 0 0
+0 1 1
+0 1 1
+Tiempo de ejecución: 0.0329 ms
+Inserte un AFN:
+4 0 2 1 3
+0 0 0
+0 1 1
+1 0 1
+1 1 2
+2 0 2
+2 1 3
+3 0 3
+3 1 0
+
+EJERCICIO 1: Brzozowski
+2 0 1 1
+1 1 0
+1 0 1
+0 1 1
+0 0 0
+Tiempo de ejecución: 0.1406 ms
+
+EJERCICIO 2: Algoritmo de Equivalencia de estados
+1 0 1 0
+0 1 0 1
+1 0 1 0
+0 1 0 1
+Tiempo de ejecución: 0.0379 ms
+
+EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
+1 0 1 0
+0 1 0 1
+1 0 1 0
+0 1 0 1
+Tiempo de ejecución: 0.0531 ms
+Inserte un AFN:
+5 0 1 4
+0 0 1
+0 1 2
+1 0 1
+1 1 3
+2 0 1
+2 1 2
+3 0 1
+3 1 4
+4 0 1
+4 1 2
+
+EJERCICIO 1: Brzozowski
+4 0 1 3
+3 1 0
+3 0 1
+2 1 3
+2 0 1
+1 1 2
+1 0 1
+0 1 0
+0 0 1
+Tiempo de ejecución: 0.2964 ms
+
+EJERCICIO 2: Algoritmo de Equivalencia de estados
+1 0 1 0 0
+0 1 0 0 0
+1 0 1 0 0
+0 0 0 1 0
+0 0 0 0 1
+Tiempo de ejecución: 0.085 ms
+
+EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
+1 0 1 0 0
+0 1 0 0 0
+1 0 1 0 0
+0 0 0 1 0
+0 0 0 0 1
+Tiempo de ejecución: 0.0726 ms
+Inserte un AFN:
+6 0 3 1 2 4
+0 0 3
+0 1 1
+1 0 2
+1 1 5
+2 0 2
+2 1 5
+3 0 0
+3 1 4
+4 0 2
+4 1 5
+5 0 5
+5 1 5
+
+EJERCICIO 1: Brzozowski
+3 0 1 1
+2 1 2
+2 0 2
+1 1 2
+1 0 1
+0 1 1
+0 0 0
+Tiempo de ejecución: 0.1749 ms
+
+EJERCICIO 2: Algoritmo de Equivalencia de estados
+1 0 0 1 0 0
+0 1 1 0 1 0
+0 1 1 0 1 0
+1 0 0 1 0 0
+0 1 1 0 1 0
+0 0 0 0 0 1
+Tiempo de ejecución: 0.1142 ms
+
+EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
+1 0 0 1 0 0
+0 1 1 0 1 0
+0 1 1 0 1 0
+1 0 0 1 0 0
+0 1 1 0 1 0
+0 0 0 0 0 1
+Tiempo de ejecución: 0.1234 ms
+Inserte un AFN:
+7 0 2 4 5
+0 0 1
+0 1 2
+1 0 0
+1 1 2
+2 0 3
+2 1 4
+3 0 0
+3 1 5
+4 0 6
+4 1 3
+5 0 6
+5 1 3
+6 0 2
+6 1 5
+
+EJERCICIO 1: Brzozowski
+5 0 1 3
+4 1 3
+4 0 1
+3 1 2
+3 0 4
+2 1 3
+2 0 0
+1 1 3
+1 0 2
+0 1 1
+0 0 0
+Tiempo de ejecución: 0.6238 ms
+
+EJERCICIO 2: Algoritmo de Equivalencia de estados
+1 1 0 0 0 0 0
+1 1 0 0 0 0 0
+0 0 1 0 0 0 0
+0 0 0 1 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 1
+Tiempo de ejecución: 0.1258 ms
+
+EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
+1 1 0 0 0 0 0
+1 1 0 0 0 0 0
+0 0 1 0 0 0 0
+0 0 0 1 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 1
+Tiempo de ejecución: 0.1552 ms
+Inserte un AFN:
+8 0 1 2
+0 0 1
+0 1 5
+1 0 6
+1 1 2
+2 0 0
+2 1 1
+3 0 2
+3 1 6
+4 0 7
+4 1 5
+5 0 2
+5 1 6
+6 0 6
+6 1 4
+7 0 6
+7 1 2
+
+EJERCICIO 1: Brzozowski
+5 0 1 4
+4 1 1
+4 0 0
+3 1 0
+3 0 3
+2 1 3
+2 0 4
+1 1 4
+1 0 3
+0 1 2
+0 0 1
+Tiempo de ejecución: 1.4307 ms
+
+EJERCICIO 2: Algoritmo de Equivalencia de estados
+1 0 0 0 1 0 0 0
+0 1 0 0 0 0 0 1
+0 0 1 0 0 0 0 0
+0 0 0 1 0 1 0 0
+1 0 0 0 1 0 0 0
+0 0 0 1 0 1 0 0
+0 0 0 0 0 0 1 0
+0 1 0 0 0 0 0 1
+Tiempo de ejecución: 0.1609 ms
+
+EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
+1 0 0 0 1 0 0 0
+0 1 0 0 0 0 0 1
+0 0 1 0 0 0 0 0
+0 0 0 1 0 1 0 0
+1 0 0 0 1 0 0 0
+0 0 0 1 0 1 0 0
+0 0 0 0 0 0 1 0
+0 1 0 0 0 0 0 1
+Tiempo de ejecución: 0.1902 ms
+Inserte un AFN:
+9 0 3 2 5 8
+0 0 1
+0 1 4
+1 0 2
+1 1 5
+2 0 3
+2 1 7
+3 0 4
+3 1 7
+4 0 5
+4 1 8
+5 0 6
+5 1 1
+6 0 7
+6 1 1
+7 0 8
+7 1 2
+8 0 0
+8 1 4
+
+EJERCICIO 1: Brzozowski
+3 0 1 2
+2 1 1
+2 0 0
+1 1 2
+1 0 2
+0 1 1
+0 0 1
+Tiempo de ejecución: 0.4927 ms
+
+EJERCICIO 2: Algoritmo de Equivalencia de estados
+1 0 0 1 0 0 1 0 0
+0 1 0 0 1 0 0 1 0
+0 0 1 0 0 1 0 0 1
+1 0 0 1 0 0 1 0 0
+0 1 0 0 1 0 0 1 0
+0 0 1 0 0 1 0 0 1
+1 0 0 1 0 0 1 0 0
+0 1 0 0 1 0 0 1 0
+0 0 1 0 0 1 0 0 1
+Tiempo de ejecución: 0.1976 ms
+
+EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
+1 0 0 1 0 0 1 0 0
+0 1 0 0 1 0 0 1 0
+0 0 1 0 0 1 0 0 1
+1 0 0 1 0 0 1 0 0
+0 1 0 0 1 0 0 1 0
+0 0 1 0 0 1 0 0 1
+1 0 0 1 0 0 1 0 0
+0 1 0 0 1 0 0 1 0
+0 0 1 0 0 1 0 0 1
+Tiempo de ejecución: 0.3364 ms

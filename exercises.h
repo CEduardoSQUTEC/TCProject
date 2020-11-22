@@ -12,10 +12,17 @@ void exercise3(dfa &myAfd);
 void execute()
 {
     std::cout<<"PROYECTO TEORÍA DE LA COMPUTACIÓN\n\n";
-    auto a = buildAFN();
-    exercise1(a);
-    exercise2(a);
-    exercise3(a);
+    int t;
+    std::cout<<"Ingrese el número de autómatas: ";
+    std::cin>>t;
+    while(t--)
+    {
+        auto a = buildAFN();
+        exercise1(a);
+        exercise2(a);
+        exercise3(a);
+        std::cout<<'\n';
+    }
 }
 
 dfa buildAFN()
