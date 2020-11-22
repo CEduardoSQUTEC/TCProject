@@ -2,6 +2,7 @@
 #define EXERCISES_H
 
 #include "afd.cpp"
+#include <chrono>
 
 dfa buildAFN();
 void exercise1(dfa &myAfd);
@@ -42,32 +43,46 @@ dfa buildAFN()
 void exercise1(dfa &myAfd)
 {
     std::cout<<"\nEJERCICIO 1: Brzozowski\n";
+    auto start = std::chrono::steady_clock::now();
     auto min = myAfd.minimization();
+    auto end = std::chrono::steady_clock::now();
     min.print();
+    auto diff = end - start;
+    std::cout<<"Tiempo de ejecución: "<<std::chrono::duration <double, std::milli> (diff).count() << " ms" << std::endl;
 }
 
 void exercise2(dfa &myAfd)
 {
     std::cout<<"\nEJERCICIO 2: Algoritmo de Equivalencia de estados\n";
+    auto start = std::chrono::steady_clock::now();
     auto res = myAfd.equivalentStates();
+    auto end = std::chrono::steady_clock::now();
+    
     for(int  i = 0; i < res.size(); i++)
     {
         for(int j = 0; j < res.size();j++)
             std::cout<<res[i][j]<<' ';
         std::cout<<'\n';
     }
+
+    auto diff = end - start;
+    std::cout<<"Tiempo de ejecución: "<<std::chrono::duration <double, std::milli> (diff).count() << " ms" << std::endl;
 }
 
 void exercise3(dfa &myAfd)
 {
-    std::cout<<"\nEJERCICIO 2: Algoritmo de Equivalencia de estados mejorado\n";
+    std::cout<<"\nEJERCICIO 3: Algoritmo de Equivalencia de estados mejorado\n";
+    auto start = std::chrono::steady_clock::now();
     auto res = myAfd.improvedEquivalentStates();
+    auto end = std::chrono::steady_clock::now();
     for(int  i = 0; i < res.size(); i++)
     {
         for(int j = 0; j < res.size();j++)
             std::cout<<res[i][j]<<' ';
         std::cout<<'\n';
-    }    
+    }
+    auto diff = end - start;
+    std::cout<<"Tiempo de ejecución: "<<std::chrono::duration <double, std::milli> (diff).count() << " ms" << std::endl;
 }
 
 #endif
