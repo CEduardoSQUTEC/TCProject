@@ -20,6 +20,76 @@ dfa dfa::minimization() {
     return sub;
 }
 
+nfa reverse(const dfa &a) {
+    Q initialState = a.states_.size();
+    std::unordered_set<Q> finalStates;
+    finalStates.insert(a.initialState_);
+    nfa na(initialState, finalStates);
+    for (auto it: a.states_){
+        na.states_[it.first];
+        for (auto t2: it.second)
+            na.addTransition(t2.second, t2.first, it.first);
+    }
+    for (auto &s: a.finalStates_)
+        na.states_[initialState][-1].insert(s);
+    return na;
+}
+
+dfa subset(nfa &na) {
+
+    // initializing the dfa
+    std::unordered_set<Q> qInitial;
+    qInitial.insert(na.initialState_);
+    std::unordered_set<Q> q0 = na.cl(qInitial);
+
+    // container we are going to use
+    std::queue<std::pair<std::unordered_set<Q>,Q>> delta;
+    std::vector<std::unordered_set<Q>> vis;
+
+    Q s = 0;
+    delta.push({q0,s});
+    vis.push_back(q0);
+
+    std::unordered_set<Q> fs;
+    dfa a(s, fs);
+
+    while (!delta.empty()) {
+        auto &states = delta.front();
+
+        if(!a.states_.count(states.second)){
+            for(auto it :  states.first){
+                if(na.finalStates_.count(it)){
+                    a.finalStates_.insert(states.second);
+                }
+            }
+
+            for (int i = 0; i <=1; i++)
+            {
+                std::unordered_set<Q> temp;
+
+                for (auto state : states.first)
+                    temp.insert(na.states_[state][i].begin(), na.states_[state][i].end());
+                temp = na.cl(temp);
+
+                auto it = std::find(vis.begin(), vis.end(), temp);
+                Q index;
+                if (it == vis.end()) {
+                    index = vis.size();
+                    vis.push_back(temp);
+                    delta.push({temp,index});
+                } else {
+                    index = it - vis.begin();
+                }
+                a.addTransition(states.second, i, index);
+                temp.clear();
+            }
+        }
+        delta.pop();
+    }
+
+    return a;
+}
+
 std::vector<std::vector<bool>> dfa::equivalentStates(){
 
     std::vector<std::vector<bool>> equivalent (states_.size(),
@@ -119,74 +189,4 @@ void dfa::print() {
         std::cout<<it<<' ';
     std::cout<<'\n';
     printStates();
-}
-
-nfa reverse(const dfa &a) {
-    Q initialState = a.states_.size();
-    std::unordered_set<Q> finalStates;
-    finalStates.insert(a.initialState_);
-    nfa na(initialState, finalStates);
-    for (auto it: a.states_){
-        na.states_[it.first];
-        for (auto t2: it.second)
-            na.addTransition(t2.second, t2.first, it.first);
-    }
-    for (auto &s: a.finalStates_)
-        na.states_[initialState][-1].insert(s);
-    return na;
-}
-
-dfa subset(nfa &na) {
-
-    // initializing the dfa
-    std::unordered_set<Q> qInitial;
-    qInitial.insert(na.initialState_);
-    std::unordered_set<Q> q0 = na.cl(qInitial);
-
-    // container we are going to use
-    std::queue<std::pair<std::unordered_set<Q>,Q>> delta;
-    std::vector<std::unordered_set<Q>> vis;
-
-    Q s = 0;
-    delta.push({q0,s});
-    vis.push_back(q0);
-
-    std::unordered_set<Q> fs;
-    dfa a(s, fs);
-
-    while (!delta.empty()) {
-        auto &states = delta.front();
-
-        if(!a.states_.count(states.second)){
-            for(auto it :  states.first){
-                if(na.finalStates_.count(it)){
-                    a.finalStates_.insert(states.second);
-                }
-            }
-
-            for (int i = 0; i <=1; i++)
-            {
-                std::unordered_set<Q> temp;
-
-                for (auto state : states.first)
-                    temp.insert(na.states_[state][i].begin(), na.states_[state][i].end());
-                temp = na.cl(temp);
-
-                auto it = std::find(vis.begin(), vis.end(), temp);
-                Q index;
-                if (it == vis.end()) {
-                    index = vis.size();
-                    vis.push_back(temp);
-                    delta.push({temp,index});
-                } else {
-                    index = it - vis.begin();
-                }
-                a.addTransition(states.second, i, index);
-                temp.clear();
-            }
-        }
-        delta.pop();
-    }
-
-    return a;
 }
