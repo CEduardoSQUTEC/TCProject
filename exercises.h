@@ -6,6 +6,7 @@
 dfa buildAFN();
 void exercise1(dfa &myAfd);
 void exercise2(dfa &myAfd);
+void exercise3(dfa &myAfd);
 
 void execute()
 {
@@ -13,6 +14,7 @@ void execute()
     auto a = buildAFN();
     exercise1(a);
     exercise2(a);
+    exercise3(a);
 }
 
 dfa buildAFN()
@@ -49,11 +51,23 @@ void exercise2(dfa &myAfd)
     std::cout<<"\nEJERCICIO 2: Algoritmo de Equivalencia de estados\n";
     auto res = myAfd.equivalentStates();
     for(int  i = 0; i < res.size(); i++)
-        {
-            for(int j = 0; j < res.size();j++)
-                std::cout<<res[i][j]<<' ';
-            std::cout<<'\n';
-        }
+    {
+        for(int j = 0; j < res.size();j++)
+            std::cout<<res[i][j]<<' ';
+        std::cout<<'\n';
+    }
+}
+
+void exercise3(dfa &myAfd)
+{
+    std::cout<<"\nEJERCICIO 2: Algoritmo de Equivalencia de estados mejorado\n";
+    auto res = myAfd.improvedEquivalentStates();
+    for(int  i = 0; i < res.size(); i++)
+    {
+        for(int j = 0; j < res.size();j++)
+            std::cout<<res[i][j]<<' ';
+        std::cout<<'\n';
+    }    
 }
 
 #endif

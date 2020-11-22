@@ -66,20 +66,42 @@ std::vector<std::vector<bool>> dfa::improvedEquivalentStates(){
 
     std::vector<std::vector<bool>> equivalent (states_.size(),
                                                std::vector<bool>(states_.size(), true) );
-
-
     std::map< std::pair< Q,Q >, std::vector<std::pair<Q,Q> > > dependencies;
-    std::queue<std::pair<Q,Q>> toProcess;
-
+    std::queue< std::pair<Q,Q> > toProcess;
 
     // we begin by marking all trivial not equivalent states
     // we also create de map of dependecies
     for(int i = 0; i < states_.size(); i++){
         for(int j = 0; j < i ; j++){
-            dependencies[ {states_[i][0] ,states_[j][0]}];
+            dependencies[{states_[i][0] ,states_[j][0]}].push_back({i,j}); 
+            dependencies[{states_[i][1] ,states_[j][1]}].push_back({i,j});
         }
     }
 
+    for(int i = 0; i < states_.size(); i++){
+        for(int j = 0; j < i ; j++){
+          if(finalStates_.count(i) && !finalStates_.count(j)
+               || finalStates_.count(j) &&
+               !finalStates_.count(i)){
+                 equivalent[i][j] = false;
+                 equivalent[j][i] = false;
+                 toProcess.push({i,j});
+                 toProcess.push({j,i});
+                }
+
+            while(!toProcess.empty()){
+              for(auto it: dependencies[toProcess.front()]){
+                if(equivalent[it.first][it.second]){
+                  equivalent[it.first][it.second] = false;   
+                  equivalent[it.second][it.first] = false;
+                  toProcess.push(it);
+                  toProcess.push({it.second,it.first});
+                }
+              }
+              toProcess.pop();
+            }
+        }
+    }
     return equivalent;
 }
 
@@ -151,15 +173,15 @@ dfa subset(nfa &na) {
                 temp = na.cl(temp);
 
                 auto it = std::find(vis.begin(), vis.end(), temp);
+                Q index;
                 if (it == vis.end()) {
-                    Q index = vis.size();
-                    a.addTransition(states.second, i,  index);
+                    index = vis.size();
                     vis.push_back(temp);
                     delta.push({temp,index});
                 } else {
-                    Q index = it - vis.begin();
-                    a.addTransition(states.second, i, index);
+                    index = it - vis.begin();
                 }
+                a.addTransition(states.second, i, index);
                 temp.clear();
             }
         }
