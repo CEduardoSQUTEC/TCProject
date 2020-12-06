@@ -52,7 +52,7 @@ public:
 
     friend dfa subset(nfa &na);
 
-    dfa minimization();
+    dfa brzozowski();
 
     std::vector<std::vector<bool>> equivalentStates();
 
