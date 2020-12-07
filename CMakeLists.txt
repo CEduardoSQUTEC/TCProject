@@ -3,4 +3,4 @@ project(TCProject)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(TCProject main.cpp  afd.h)
+add_executable(TCProject main.cpp afd.h)

@@ -29,7 +29,7 @@ public:
     void addTransition(Q beginState, alphabet symbol, Q endState) { states_[beginState][symbol].insert(endState); };
 
     friend nfa reverse(const dfa &a);
-    
+
     friend dfa subset(nfa &na);
 
     std::unordered_set<Q> cl(std::unordered_set<Q> &set);
@@ -41,7 +41,7 @@ class dfa {
     std::unordered_set<Q> finalStates_{};
     std::unordered_map<Q, std::unordered_map<alphabet, Q>> states_{};
 public:
-    
+
     dfa() = default;
 
     dfa(Q initial, std::unordered_set<Q> &finalState) : initialState_(initial), finalStates_(finalState) {};
@@ -57,6 +57,8 @@ public:
     std::vector<std::vector<bool>> equivalentStates();
 
     std::vector<std::vector<bool>> improvedEquivalentStates();
+
+    dfa algorithmHuffman();
 
     void printStates();
 
