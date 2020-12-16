@@ -19,9 +19,9 @@ void execute() {
     std::cin >> t;
     while (t--) {
         auto a = buildAFN();
-        exercise1(a);
         exercise2(a);
-        exercise3(a);
+        exercise1(a);
+        //exercise3(a);
         std::cout << '\n';
     }
 }
@@ -56,6 +56,10 @@ void exercise1(dfa &myAfd) {
     auto diff = end - start;
     std::cout << "Tiempo de ejecución: " << std::chrono::duration<double, std::milli>(diff).count() << " ms"
               << std::endl;
+
+    std::cout<<"New min:"<<std::endl;
+    auto newMin = myAfd.algorithmHuffman();
+    newMin.print();
 }
 
 void exercise2(dfa &myAfd) {
@@ -65,14 +69,27 @@ void exercise2(dfa &myAfd) {
     auto end = std::chrono::steady_clock::now();
 
     for (int i = 0; i < res.size(); i++) {
+        std::cout<<i<<" :";
         for (int j = 0; j < res.size(); j++)
             std::cout << res[i][j] << ' ';
         std::cout << '\n';
     }
 
+    std::cout<<"   ";
+    for (int j = 0; j < res.size(); j++)
+        std::cout << j << ' ';
+    std::cout<<std::endl;
+
     auto diff = end - start;
     std::cout << "Tiempo de ejecución: " << std::chrono::duration<double, std::milli>(diff).count() << " ms"
               << std::endl;
+    auto res1 = myAfd.improvedEquivalentStates();
+
+
+    for (int i = 0; i < res.size(); i++) {
+        for (int j = 0; j < res.size(); j++)
+            if(res1[i][j] != res[i][j]) std::cout<<"la cagaste";
+    }
 }
 
 void exercise3(dfa &myAfd) {

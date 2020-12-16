@@ -176,24 +176,80 @@ std::vector<std::vector<bool>> dfa::improvedEquivalentStates() {
 }
 
 dfa dfa::algorithmHuffman() {
+    // toDO
+    // erased unrechable and modify afs
+
+
+
     auto eq = improvedEquivalentStates();
     std::vector<std::unordered_set<int>> newStates;
-    std::unordered_set<int> vis;
-    for (int i = 0; i < eq.size(); ++i) {
+    std::vector<bool> vis (states_.size() , false);
+    int initS {};
+    std::unordered_set<int> endS {};
+
+    // creating the blocks
+    for (int i = 0; i < eq.size() ; ++i) {
         std::unordered_set<int> block;
-        for (int j = 0; j < eq.size(); ++j)
-            if (eq[i][j] && vis.find(j) != vis.end()) block.insert(j), vis.insert(j);
-        newStates.push_back(block);
+        if(!vis[i]){
+            if(initialState_ == i) initS = newStates.size();
+            if(finalStates_.find(i) != finalStates_.end()) endS.insert(newStates.size());
+            block.insert(i);
+
+
+            for (int j = eq.size() - 1; j > i ; --j)
+                if (eq[j][i] && !vis[j]){
+                    block.insert(j);
+                    vis[j] = true;
+                    if(initialState_ == j) initS = newStates.size();
+                    if(finalStates_.find(j) != finalStates_.end()) endS.insert(newStates.size());
+
+                }
+
+            vis[i] = true;
+            newStates.push_back(block);
+        }
     }
-    return dfa();
+
+    dfa minDfa(initS,endS);
+    for(int i = 0 ; i < newStates.size(); i++){
+        // getting any state from block n
+        auto &block = newStates[i];
+        int s = *block.begin();
+        // gettin transitions
+        std::vector<int> tran{};
+        std::vector<bool> found(2, false);
+        tran.push_back(states_[s][0]);
+        tran.push_back(states_[s][1]);
+
+
+        for(int j = 0; j < newStates.size(); j++){
+            if(!found[0] && newStates[j].find(tran[0]) != newStates[j].end()){
+                minDfa.states_[i][0] = j;
+                found[0] = true;
+            }
+            if( !found[1] && newStates[j].find(tran[1]) != newStates[j].end() ){
+                minDfa.states_[i][1] = j;
+                found[1] = true;
+            }
+            if(found[0] && found[1]) break;
+        }
+    }
+
+    return minDfa;
 }
 
 void dfa::printStates() {
-    for (auto trans: states_) {
-        for (auto delta : trans.second) {
-            std::cout << trans.first << " " << delta.first << " " << delta.second << "\n";
+//    for (auto trans: states_) {
+//        for (auto delta : trans.second) {
+//            std::cout << trans.first << " " << delta.first << " " << delta.second << "\n";
+//        }
+//    }
+    for (int i = 0 ; i < states_.size();i++) {
+        for (auto delta :states_[i]) {
+            std::cout << i << " " << delta.first << " " << delta.second << "\n";
         }
     }
+
 }
 
 void dfa::print() {

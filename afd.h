@@ -24,6 +24,9 @@ class nfa {
     std::unordered_map<Q, std::unordered_map<alphabet, std::unordered_set<Q>>> states_{};
 
 public:
+
+    nfa() = default;
+
     nfa(Q initialState, std::unordered_set<Q> &finalState) : initialState_(initialState), finalStates_(finalState) {};
 
     void addTransition(Q beginState, alphabet symbol, Q endState) { states_[beginState][symbol].insert(endState); };
