@@ -8,6 +8,7 @@ dfa buildAFN();
 void exercise1(dfa &myAfd);
 void exercise2(dfa &myAfd);
 void exercise3(dfa &myAfd);
+void exercise4(dfa &myAfd);
 
 void execute()
 {
@@ -22,6 +23,7 @@ void execute()
         exercise1(a);
         exercise2(a);
         exercise3(a);
+        exercise4(a);
         std::cout<<'\n';
     }
 }
@@ -100,18 +102,18 @@ void exercise3(dfa &myAfd)
     std::cout<<"Tiempo de ejecución: "<<std::chrono::duration <double, std::milli> (diff).count() << " ms" << std::endl;
 }
 
-// void exercise4(dfa &myAfd)
-// {
-//     std::cout<<"\nEJERCICIO 4: Algoritmo de Huffman-Moore\n";
-//     auto start = std::chrono::steady_clock::now();
-//     auto min = myAfd.huffmanMoore();
-//     auto end = std::chrono::steady_clock::now();
+void exercise4(dfa &myAfd)
+{
+    std::cout<<"\nEJERCICIO 4: Algoritmo de Huffman-Moore\n";
+    auto start = std::chrono::steady_clock::now();
+    auto min = myAfd.huffmanMoore();
+    auto end = std::chrono::steady_clock::now();
 
-//     min.print();
+    min.print();
 
-//     auto diff = end - start;
-//     std::cout<<"Tiempo de ejecución: "<<std::chrono::duration <double, std::milli> (diff).count() << " ms" << std::endl;
-// }
+    auto diff = end - start;
+    std::cout<<"Tiempo de ejecución: "<<std::chrono::duration <double, std::milli> (diff).count() << " ms" << std::endl;
+}
 
 // void exercise5(dfa &myAfd)
 // {

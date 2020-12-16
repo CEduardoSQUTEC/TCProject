@@ -183,6 +183,132 @@ std::vector<std::vector<bool>> dfa::improvedEquivalentStates(){
     return equivalent;
 }
 
+std::vector<bool> dfa::reachableStates(){
+    std::stack<Q> s;
+    std::vector<bool> visited(states_.size(), false);
+    s.push(initialState_);
+
+
+    while (!s.empty()){
+        auto t = s.top();
+        visited[t] = true;
+        s.pop();
+        for(auto transition : states_[t]){
+            if(!visited[transition.second]){
+                s.push(transition.second);
+            }
+        }
+    }
+
+
+    return visited;
+}
+
+void dfa::erasedUnreachable(){
+    // i just return a vector of bools because
+    // i don't want to overcomplicated things
+    auto reachable = reachableStates();
+    int counter {};
+
+    for(auto && i : reachable){
+        if(i) counter++;
+    }
+
+    // if all are reachable just
+    // don't
+    if(counter == states_.size()) return;
+    counter = {};
+    std::unordered_map<Q, Q> newStates{};
+
+    // create new keys for the old keys
+    // because keys go from 0 to n - 1
+    for(int i = 0; i < reachable.size();i++){
+        if(reachable[i]){
+            newStates[i] = counter;
+            counter++;
+        }
+    }
+
+    // modifiying the current states
+    std::unordered_map<Q, std::unordered_map<alphabet, Q>> res{};
+    for(int i = 0; i < reachable.size();i++){
+        if(reachable[i]){
+            res[newStates[i]][0] =  newStates[states_[i][0]];
+            res[newStates[i]][1] =  newStates[states_[i][1]];
+        }
+    }
+    initialState_ = newStates[initialState_];
+
+    auto  temp = finalStates_;
+    finalStates_.clear();
+    for(auto it : temp){
+        if(reachable[it]) finalStates_.insert(newStates[it]);
+    }
+
+    states_ = res;
+}
+
+dfa dfa::huffmanMoore() {
+    // toDO
+    // erased unreachable and modify afs
+
+    erasedUnreachable();
+
+    // eq states
+    auto eq = improvedEquivalentStates();
+    std::vector<std::unordered_set<int>> newStates;
+    std::vector<bool> vis (states_.size() , false);
+    int initS {};
+    std::unordered_set<int> endS {};
+
+    // creating the blocks
+    for (int i = 0; i < eq.size() ; ++i) {
+        std::unordered_set<int> block;
+        if(!vis[i]){
+            if(initialState_ == i) initS = newStates.size();
+            if(finalStates_.find(i) != finalStates_.end()) endS.insert(newStates.size());
+            block.insert(i);
+
+            for (int j = eq.size() - 1; j > i ; --j)
+                if (eq[j][i] && !vis[j]){
+                    block.insert(j);
+                    vis[j] = true;
+                    if(initialState_ == j) initS = newStates.size();
+                    if(finalStates_.find(j) != finalStates_.end()) endS.insert(newStates.size());
+                }
+            vis[i] = true;
+            newStates.push_back(block);
+        }
+    }
+
+    dfa minDfa(initS,endS);
+    
+    for(int i = 0 ; i < newStates.size(); i++){
+        // getting any state from block n
+        auto &block = newStates[i];
+        int s = *block.begin();
+        // gettin transitions
+        std::vector<int> tran{};
+        std::vector<bool> found(2, false);
+        tran.push_back(states_[s][0]);
+        tran.push_back(states_[s][1]);
+
+
+        for(int j = 0; j < newStates.size(); j++){
+            if(!found[0] && newStates[j].find(tran[0]) != newStates[j].end()){
+                minDfa.states_[i][0] = j;
+                found[0] = true;
+            }
+            if( !found[1] && newStates[j].find(tran[1]) != newStates[j].end() ){
+                minDfa.states_[i][1] = j;
+                found[1] = true;
+            }
+            if(found[0] && found[1]) break;
+        }
+    }
+    return minDfa;
+}
+
 void dfa::printStates() {
     for (auto trans: states_) {
         for (auto delta : trans.second) {

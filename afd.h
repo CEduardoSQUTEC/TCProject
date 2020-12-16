@@ -12,6 +12,7 @@
 #include <queue>
 #include <algorithm>
 #include <map>
+#include <stack>
 
 using alphabet = int;
 using Q = int;
@@ -57,6 +58,12 @@ public:
     std::vector<std::vector<bool>> equivalentStates();
 
     std::vector<std::vector<bool>> improvedEquivalentStates();
+
+    void erasedUnreachable();
+
+    std::vector<bool> reachableStates();
+
+    dfa huffmanMoore();
 
     void printStates();
 
