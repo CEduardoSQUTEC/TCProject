@@ -310,9 +310,9 @@ dfa dfa::huffmanMoore() {
 }
 
 void dfa::printStates() {
-    for (auto trans: states_) {
-        for (auto delta : trans.second) {
-            std::cout << trans.first << " " << delta.first << " " << delta.second << "\n";
+    for (int i = 0 ; i < states_.size();i++) {
+        for (auto delta :states_[i]) {
+            std::cout << i << " " << delta.first << " " << delta.second << "\n";
         }
     }
 }
