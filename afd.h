@@ -62,11 +62,11 @@ public:
 
     std::vector<std::vector<bool>> improvedEquivalentStates();
 
-    void erasedUnrechable();
+    void erasedUnreachable();
 
     std::vector<bool> reachableStates();
 
-    dfa algorithmHuffman();
+    dfa huffman();
 
     void printStates();
 

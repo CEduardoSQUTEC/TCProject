@@ -197,7 +197,7 @@ std::vector<bool> dfa::reachableStates(){
     return visited;
 }
 
-void dfa::erasedUnrechable(){
+void dfa::erasedUnreachable(){
     // i just return a vector of bools because
     // i don't want to overcomplicated things
     auto reachable = reachableStates();
@@ -238,17 +238,14 @@ void dfa::erasedUnrechable(){
         if(reachable[it]) finalStates_.insert(newStates[it]);
     }
 
-
-
     states_ = res;
-
 }
 
-dfa dfa::algorithmHuffman() {
+dfa dfa::huffman() {
     // toDO
-    // erased unrechable and modify afs
+    // erased unreachable and modify afs
 
-    erasedUnrechable();
+    erasedUnreachable();
 
     // eq states
     auto eq = improvedEquivalentStates();
@@ -265,22 +262,20 @@ dfa dfa::algorithmHuffman() {
             if(finalStates_.find(i) != finalStates_.end()) endS.insert(newStates.size());
             block.insert(i);
 
-
             for (int j = eq.size() - 1; j > i ; --j)
                 if (eq[j][i] && !vis[j]){
                     block.insert(j);
                     vis[j] = true;
                     if(initialState_ == j) initS = newStates.size();
                     if(finalStates_.find(j) != finalStates_.end()) endS.insert(newStates.size());
-
                 }
-
             vis[i] = true;
             newStates.push_back(block);
         }
     }
 
     dfa minDfa(initS,endS);
+    
     for(int i = 0 ; i < newStates.size(); i++){
         // getting any state from block n
         auto &block = newStates[i];
@@ -304,8 +299,6 @@ dfa dfa::algorithmHuffman() {
             if(found[0] && found[1]) break;
         }
     }
-
-
     return minDfa;
 }
 

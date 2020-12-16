@@ -56,10 +56,6 @@ void exercise1(dfa &myAfd) {
     auto diff = end - start;
     std::cout << "Tiempo de ejecución: " << std::chrono::duration<double, std::milli>(diff).count() << " ms"
               << std::endl;
-
-    std::cout<<"New min:"<<std::endl;
-    auto newMin = myAfd.algorithmHuffman();
-    newMin.print();
 }
 
 void exercise2(dfa &myAfd) {
