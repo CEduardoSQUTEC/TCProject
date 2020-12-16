@@ -12,6 +12,7 @@
 #include <queue>
 #include <algorithm>
 #include <map>
+#include <stack>
 
 using alphabet = int;
 using Q = int;
@@ -60,6 +61,10 @@ public:
     std::vector<std::vector<bool>> equivalentStates();
 
     std::vector<std::vector<bool>> improvedEquivalentStates();
+
+    void erasedUnrechable();
+
+    std::vector<bool> reachableStates();
 
     dfa algorithmHuffman();
 

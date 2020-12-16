@@ -88,7 +88,7 @@ void exercise2(dfa &myAfd) {
 
     for (int i = 0; i < res.size(); i++) {
         for (int j = 0; j < res.size(); j++)
-            if(res1[i][j] != res[i][j]) std::cout<<"la cagaste";
+            if(res1[i][j] != res[i][j]) throw ("XD");
     }
 }
 

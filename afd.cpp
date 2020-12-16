@@ -175,12 +175,82 @@ std::vector<std::vector<bool>> dfa::improvedEquivalentStates() {
     return equivalent;
 }
 
+
+std::vector<bool> dfa::reachableStates(){
+    std::stack<Q> s;
+    std::vector<bool> visited(states_.size(), false);
+    s.push(initialState_);
+
+
+    while (!s.empty()){
+        auto t = s.top();
+        visited[t] = true;
+        s.pop();
+        for(auto transition : states_[t]){
+            if(!visited[transition.second]){
+                s.push(transition.second);
+            }
+        }
+    }
+
+
+    return visited;
+}
+
+void dfa::erasedUnrechable(){
+    // i just return a vector of bools because
+    // i don't want to overcomplicated things
+    auto reachable = reachableStates();
+    int counter {};
+
+    for(auto && i : reachable){
+        if(i) counter++;
+    }
+
+    // if all are reachable just
+    // don't
+    if(counter == states_.size()) return;
+    counter = {};
+    std::unordered_map<Q, Q> newStates{};
+
+    // create new keys for the old keys
+    // because keys go from 0 to n - 1
+    for(int i = 0; i < reachable.size();i++){
+        if(reachable[i]){
+            newStates[i] = counter;
+            counter++;
+        }
+    }
+
+    // modifiying the current states
+    std::unordered_map<Q, std::unordered_map<alphabet, Q>> res{};
+    for(int i = 0; i < reachable.size();i++){
+        if(reachable[i]){
+            res[newStates[i]][0] =  newStates[states_[i][0]];
+            res[newStates[i]][1] =  newStates[states_[i][1]];
+        }
+    }
+    initialState_ = newStates[initialState_];
+
+    auto  temp = finalStates_;
+    finalStates_.clear();
+    for(auto it : temp){
+        if(reachable[it]) finalStates_.insert(newStates[it]);
+    }
+
+
+
+    states_ = res;
+
+}
+
 dfa dfa::algorithmHuffman() {
     // toDO
     // erased unrechable and modify afs
 
+    erasedUnrechable();
 
-
+    // eq states
     auto eq = improvedEquivalentStates();
     std::vector<std::unordered_set<int>> newStates;
     std::vector<bool> vis (states_.size() , false);
@@ -234,6 +304,7 @@ dfa dfa::algorithmHuffman() {
             if(found[0] && found[1]) break;
         }
     }
+
 
     return minDfa;
 }
