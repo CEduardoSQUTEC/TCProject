@@ -21,7 +21,7 @@ void execute() {
     std::cin >> t;
     while (t--) {
         auto a = buildAFN();
-//        exercise1(a);
+        exercise1(a);
 //        exercise2(a);
 //        exercise3(a);
         exercise5(a);
