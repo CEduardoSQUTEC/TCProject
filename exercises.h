@@ -8,6 +8,8 @@ dfa buildAFN();
 void exercise1(dfa &myAfd);
 void exercise2(dfa &myAfd);
 void exercise3(dfa &myAfd);
+void exercise4(dfa &myAfd);
+void exercise5(dfa &myAfd);
 
 void execute()
 {
@@ -17,10 +19,13 @@ void execute()
     std::cin>>t;
     while(t--)
     {
+        std::cout<<"\n================================\n";
         auto a = buildAFN();
         exercise1(a);
         exercise2(a);
         exercise3(a);
+        exercise4(a);
+        exercise5(a);
         std::cout<<'\n';
     }
 }
@@ -50,10 +55,13 @@ dfa buildAFN()
 void exercise1(dfa &myAfd)
 {
     std::cout<<"\nEJERCICIO 1: Brzozowski\n";
+    
     auto start = std::chrono::steady_clock::now();
-    auto min = myAfd.minimization();
+    auto min = myAfd.brzozowski();
     auto end = std::chrono::steady_clock::now();
+
     min.print();
+
     auto diff = end - start;
     std::cout<<"Tiempo de ejecución: "<<std::chrono::duration <double, std::milli> (diff).count() << " ms" << std::endl;
 }
@@ -61,6 +69,7 @@ void exercise1(dfa &myAfd)
 void exercise2(dfa &myAfd)
 {
     std::cout<<"\nEJERCICIO 2: Algoritmo de Equivalencia de estados\n";
+
     auto start = std::chrono::steady_clock::now();
     auto res = myAfd.equivalentStates();
     auto end = std::chrono::steady_clock::now();
@@ -79,15 +88,44 @@ void exercise2(dfa &myAfd)
 void exercise3(dfa &myAfd)
 {
     std::cout<<"\nEJERCICIO 3: Algoritmo de Equivalencia de estados mejorado\n";
+
     auto start = std::chrono::steady_clock::now();
     auto res = myAfd.improvedEquivalentStates();
     auto end = std::chrono::steady_clock::now();
+
     for(int  i = 0; i < res.size(); i++)
     {
         for(int j = 0; j < res.size();j++)
             std::cout<<res[i][j]<<' ';
         std::cout<<'\n';
     }
+    
+    auto diff = end - start;
+    std::cout<<"Tiempo de ejecución: "<<std::chrono::duration <double, std::milli> (diff).count() << " ms" << std::endl;
+}
+
+void exercise4(dfa &myAfd)
+{
+    std::cout<<"\nEJERCICIO 4: Algoritmo de Huffman-Moore\n";
+    auto start = std::chrono::steady_clock::now();
+    auto min = myAfd.huffmanMoore();
+    auto end = std::chrono::steady_clock::now();
+
+    min.print();
+
+    auto diff = end - start;
+    std::cout<<"Tiempo de ejecución: "<<std::chrono::duration <double, std::milli> (diff).count() << " ms" << std::endl;
+}
+
+void exercise5(dfa &myAfd)
+{
+    std::cout<<"\nEJERCICIO 5: Algoritmo de Hopcroft\n";
+    auto start = std::chrono::steady_clock::now();
+    auto min = myAfd.hopcroft();
+    auto end = std::chrono::steady_clock::now();
+
+    min.print();
+
     auto diff = end - start;
     std::cout<<"Tiempo de ejecución: "<<std::chrono::duration <double, std::milli> (diff).count() << " ms" << std::endl;
 }

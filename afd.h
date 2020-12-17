@@ -12,6 +12,7 @@
 #include <queue>
 #include <algorithm>
 #include <map>
+#include <stack>
 
 using alphabet = int;
 using Q = int;
@@ -52,11 +53,19 @@ public:
 
     friend dfa subset(nfa &na);
 
-    dfa minimization();
+    dfa brzozowski();
 
     std::vector<std::vector<bool>> equivalentStates();
 
     std::vector<std::vector<bool>> improvedEquivalentStates();
+
+    void eraseUnreachable();
+
+    std::vector<bool> reachableStates();
+
+    dfa huffmanMoore();
+
+    dfa hopcroft();
 
     void printStates();
 

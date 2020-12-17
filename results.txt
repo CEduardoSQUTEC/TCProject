@@ -1,110 +1,134 @@
-Ingrese el número de autómatas: 8
+PROYECTO TEORÍA DE LA COMPUTACIÓN
+
+Ingrese el número de autómatas:
+================================
 Inserte un AFN:
-2 0 2 0 1
-0 0 0
-0 1 1
-1 0 0
-1 1 1
 
 EJERCICIO 1: Brzozowski
 1 0 1 0
 0 1 0
 0 0 0
-Tiempo de ejecución: 0.1265 ms
+Tiempo de ejecución: 0.1048 ms
 
 EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 1
 1 1
-Tiempo de ejecución: 0.021 ms
-
-EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
-1 1
-1 1
-Tiempo de ejecución: 0.0362 ms
-Inserte un AFN:
-3 0 2 1 2
-0 0 2
-0 1 0
-1 0 1
-1 1 0
-2 0 1
-2 1 0
-
-EJERCICIO 1: Brzozowski
-2 0 1 1
-1 1 0
-1 0 1
-0 1 0
-0 0 1
-Tiempo de ejecución: 0.1748 ms
-
-EJERCICIO 2: Algoritmo de Equivalencia de estados
-1 0 0
-0 1 1
-0 1 1
 Tiempo de ejecución: 0.0206 ms
 
 EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
-1 0 0
-0 1 1
-0 1 1
-Tiempo de ejecución: 0.0329 ms
-Inserte un AFN:
-4 0 2 1 3
+1 1
+1 1
+Tiempo de ejecución: 0.0358 ms
+
+EJERCICIO 4: Algoritmo de Huffman-Moore
+1 0 1 0
+0 1 0
 0 0 0
-0 1 1
-1 0 1
-1 1 2
-2 0 2
-2 1 3
-3 0 3
-3 1 0
+Tiempo de ejecución: 0.0464 ms
+
+EJERCICIO 5: Algoritmo de Hopcroft
+1 0 1 0
+0 1 0
+0 0 0
+Tiempo de ejecución: 0.0592 ms
+
+
+================================
+Inserte un AFN:
 
 EJERCICIO 1: Brzozowski
 2 0 1 1
+0 1 0
+0 0 1
 1 1 0
 1 0 1
+Tiempo de ejecución: 0.1705 ms
+
+EJERCICIO 2: Algoritmo de Equivalencia de estados
+1 0 0
+0 1 1
+0 1 1
+Tiempo de ejecución: 0.0258 ms
+
+EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
+1 0 0
+0 1 1
+0 1 1
+Tiempo de ejecución: 0.0305 ms
+
+EJERCICIO 4: Algoritmo de Huffman-Moore
+2 0 1 1
+0 0 1
+0 1 0
+1 0 1
+1 1 0
+Tiempo de ejecución: 0.0623 ms
+
+EJERCICIO 5: Algoritmo de Hopcroft
+2 1 1 0
 0 1 1
 0 0 0
-Tiempo de ejecución: 0.1406 ms
+1 1 1
+1 0 0
+Tiempo de ejecución: 0.0744 ms
+
+
+================================
+Inserte un AFN:
+
+EJERCICIO 1: Brzozowski
+2 0 1 1
+0 1 1
+0 0 0
+1 1 0
+1 0 1
+Tiempo de ejecución: 0.1412 ms
 
 EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 0 1 0
 0 1 0 1
 1 0 1 0
 0 1 0 1
-Tiempo de ejecución: 0.0379 ms
+Tiempo de ejecución: 0.0237 ms
 
 EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 1 0 1 0
 0 1 0 1
 1 0 1 0
 0 1 0 1
-Tiempo de ejecución: 0.0531 ms
-Inserte un AFN:
-5 0 1 4
-0 0 1
-0 1 2
+Tiempo de ejecución: 0.0332 ms
+
+EJERCICIO 4: Algoritmo de Huffman-Moore
+2 0 1 1
+0 1 1
+0 0 0
 1 0 1
-1 1 3
-2 0 1
-2 1 2
-3 0 1
-3 1 4
-4 0 1
-4 1 2
+1 1 0
+Tiempo de ejecución: 0.0586 ms
+
+EJERCICIO 5: Algoritmo de Hopcroft
+2 1 1 0
+0 1 1
+0 0 0
+1 1 0
+1 0 1
+Tiempo de ejecución: 0.0665 ms
+
+
+================================
+Inserte un AFN:
 
 EJERCICIO 1: Brzozowski
 4 0 1 3
-3 1 0
-3 0 1
-2 1 3
-2 0 1
-1 1 2
-1 0 1
 0 1 0
 0 0 1
-Tiempo de ejecución: 0.2964 ms
+1 1 2
+1 0 1
+2 1 3
+2 0 1
+3 1 0
+3 0 1
+Tiempo de ejecución: 0.2563 ms
 
 EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 0 1 0 0
@@ -112,7 +136,7 @@ EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 0 1 0 0
 0 0 0 1 0
 0 0 0 0 1
-Tiempo de ejecución: 0.085 ms
+Tiempo de ejecución: 0.0702 ms
 
 EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 1 0 1 0 0
@@ -120,31 +144,45 @@ EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 1 0 1 0 0
 0 0 0 1 0
 0 0 0 0 1
-Tiempo de ejecución: 0.0726 ms
-Inserte un AFN:
-6 0 3 1 2 4
-0 0 3
-0 1 1
+Tiempo de ejecución: 0.0603 ms
+
+EJERCICIO 4: Algoritmo de Huffman-Moore
+4 0 1 3
+0 0 1
+0 1 0
+1 1 2
+1 0 1
+2 1 3
+2 0 1
+3 0 1
+3 1 0
+Tiempo de ejecución: 0.0909 ms
+
+EJERCICIO 5: Algoritmo de Hopcroft
+4 3 1 0
+0 1 3
+0 0 2
+1 1 0
 1 0 2
-1 1 5
+2 1 1
 2 0 2
-2 1 5
-3 0 0
-3 1 4
-4 0 2
-4 1 5
-5 0 5
-5 1 5
+3 1 3
+3 0 2
+Tiempo de ejecución: 0.1258 ms
+
+
+================================
+Inserte un AFN:
 
 EJERCICIO 1: Brzozowski
 3 0 1 1
-2 1 2
-2 0 2
-1 1 2
-1 0 1
 0 1 1
 0 0 0
-Tiempo de ejecución: 0.1749 ms
+1 1 2
+1 0 1
+2 1 2
+2 0 2
+Tiempo de ejecución: 0.1289 ms
 
 EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 0 0 1 0 0
@@ -153,7 +191,7 @@ EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 0 0 1 0 0
 0 1 1 0 1 0
 0 0 0 0 0 1
-Tiempo de ejecución: 0.1142 ms
+Tiempo de ejecución: 0.0773 ms
 
 EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 1 0 0 1 0 0
@@ -162,37 +200,45 @@ EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 1 0 0 1 0 0
 0 1 1 0 1 0
 0 0 0 0 0 1
-Tiempo de ejecución: 0.1234 ms
-Inserte un AFN:
-7 0 2 4 5
-0 0 1
-0 1 2
-1 0 0
+Tiempo de ejecución: 0.0684 ms
+
+EJERCICIO 4: Algoritmo de Huffman-Moore
+3 0 1 1
+0 1 1
+0 0 0
 1 1 2
-2 0 3
-2 1 4
-3 0 0
-3 1 5
-4 0 6
-4 1 3
-5 0 6
-5 1 3
-6 0 2
-6 1 5
+1 0 1
+2 1 2
+2 0 2
+Tiempo de ejecución: 0.1001 ms
+
+EJERCICIO 5: Algoritmo de Hopcroft
+3 2 1 0
+0 1 1
+0 0 0
+1 1 1
+1 0 1
+2 1 0
+2 0 2
+Tiempo de ejecución: 0.1065 ms
+
+
+================================
+Inserte un AFN:
 
 EJERCICIO 1: Brzozowski
 5 0 1 3
-4 1 3
-4 0 1
-3 1 2
-3 0 4
-2 1 3
-2 0 0
-1 1 3
-1 0 2
 0 1 1
 0 0 0
-Tiempo de ejecución: 0.6238 ms
+1 1 3
+1 0 2
+2 1 3
+2 0 0
+3 1 2
+3 0 4
+4 1 3
+4 0 1
+Tiempo de ejecución: 0.5298 ms
 
 EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 1 0 0 0 0 0
@@ -202,7 +248,7 @@ EJERCICIO 2: Algoritmo de Equivalencia de estados
 0 0 0 0 1 1 0
 0 0 0 0 1 1 0
 0 0 0 0 0 0 1
-Tiempo de ejecución: 0.1258 ms
+Tiempo de ejecución: 0.0958 ms
 
 EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 1 1 0 0 0 0 0
@@ -212,39 +258,53 @@ EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 0 0 0 0 1 1 0
 0 0 0 0 1 1 0
 0 0 0 0 0 0 1
-Tiempo de ejecución: 0.1552 ms
-Inserte un AFN:
-8 0 1 2
-0 0 1
-0 1 5
-1 0 6
-1 1 2
+Tiempo de ejecución: 0.0945 ms
+
+EJERCICIO 4: Algoritmo de Huffman-Moore
+5 0 1 3
+0 1 1
+0 0 0
+1 1 3
+1 0 2
+2 1 3
 2 0 0
-2 1 1
+3 0 4
+3 1 2
+4 1 3
+4 0 1
+Tiempo de ejecución: 0.1429 ms
+
+EJERCICIO 5: Algoritmo de Hopcroft
+5 1 1 0
+0 1 2
+0 0 4
+1 1 3
+1 0 1
+2 1 0
+2 0 1
+3 1 0
 3 0 2
-3 1 6
-4 0 7
-4 1 5
-5 0 2
-5 1 6
-6 0 6
-6 1 4
-7 0 6
-7 1 2
+4 1 0
+4 0 3
+Tiempo de ejecución: 0.1801 ms
+
+
+================================
+Inserte un AFN:
 
 EJERCICIO 1: Brzozowski
 5 0 1 4
-4 1 1
-4 0 0
-3 1 0
-3 0 3
-2 1 3
-2 0 4
-1 1 4
-1 0 3
 0 1 2
 0 0 1
-Tiempo de ejecución: 1.4307 ms
+1 1 4
+1 0 3
+2 1 3
+2 0 4
+3 1 0
+3 0 3
+4 1 1
+4 0 0
+Tiempo de ejecución: 1.0994 ms
 
 EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 0 0 0 1 0 0 0
@@ -255,7 +315,7 @@ EJERCICIO 2: Algoritmo de Equivalencia de estados
 0 0 0 1 0 1 0 0
 0 0 0 0 0 0 1 0
 0 1 0 0 0 0 0 1
-Tiempo de ejecución: 0.1609 ms
+Tiempo de ejecución: 0.1172 ms
 
 EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 1 0 0 0 1 0 0 0
@@ -266,37 +326,49 @@ EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 0 0 0 1 0 1 0 0
 0 0 0 0 0 0 1 0
 0 1 0 0 0 0 0 1
-Tiempo de ejecución: 0.1902 ms
-Inserte un AFN:
-9 0 3 2 5 8
+Tiempo de ejecución: 0.1433 ms
+
+EJERCICIO 4: Algoritmo de Huffman-Moore
+5 0 1 2
+0 1 3
 0 0 1
-0 1 4
-1 0 2
-1 1 5
-2 0 3
-2 1 7
-3 0 4
-3 1 7
-4 0 5
-4 1 8
-5 0 6
-5 1 1
-6 0 7
-6 1 1
-7 0 8
-7 1 2
-8 0 0
-8 1 4
+1 0 4
+1 1 2
+2 1 1
+2 0 0
+3 1 4
+3 0 2
+4 0 4
+4 1 0
+Tiempo de ejecución: 0.1778 ms
+
+EJERCICIO 5: Algoritmo de Hopcroft
+5 3 1 0
+0 1 2
+0 0 3
+1 1 4
+1 0 0
+2 1 0
+2 0 4
+3 1 1
+3 0 2
+4 1 3
+4 0 4
+Tiempo de ejecución: 0.1775 ms
+
+
+================================
+Inserte un AFN:
 
 EJERCICIO 1: Brzozowski
 3 0 1 2
-2 1 1
-2 0 0
-1 1 2
-1 0 2
 0 1 1
 0 0 1
-Tiempo de ejecución: 0.4927 ms
+1 1 2
+1 0 2
+2 1 1
+2 0 0
+Tiempo de ejecución: 0.4385 ms
 
 EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 0 0 1 0 0 1 0 0
@@ -308,7 +380,7 @@ EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 0 0 1 0 0 1 0 0
 0 1 0 0 1 0 0 1 0
 0 0 1 0 0 1 0 0 1
-Tiempo de ejecución: 0.1976 ms
+Tiempo de ejecución: 0.1497 ms
 
 EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 1 0 0 1 0 0 1 0 0
@@ -320,4 +392,24 @@ EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 1 0 0 1 0 0 1 0 0
 0 1 0 0 1 0 0 1 0
 0 0 1 0 0 1 0 0 1
-Tiempo de ejecución: 0.3364 ms
+Tiempo de ejecución: 0.1429 ms
+
+EJERCICIO 4: Algoritmo de Huffman-Moore
+3 0 1 2
+0 1 1
+0 0 1
+1 1 2
+1 0 2
+2 1 1
+2 0 0
+Tiempo de ejecución: 0.178 ms
+
+EJERCICIO 5: Algoritmo de Hopcroft
+3 1 1 0
+0 1 2
+0 0 1
+1 1 2
+1 0 2
+2 1 0
+2 0 0
+Tiempo de ejecución: 0.1447 ms
