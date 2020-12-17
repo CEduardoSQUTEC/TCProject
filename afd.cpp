@@ -349,7 +349,7 @@ dfa dfa::huffmanMoore() {
 dfa dfa::hopcroft() {
     std::unordered_map<Q, std::unordered_set<Q>> p;
     std::unordered_map<Q, std::unordered_set<Q>> w;
-    // Set two P and Q with final states and not final states.
+    // Setting two P and Q with final states and not final states.
     p[0] = w[0] = finalStates_;
     std::unordered_set<Q> noFinalstates;
     for (const auto &e: states_) {
@@ -391,9 +391,7 @@ dfa dfa::hopcroft() {
             }
         }
     }
-
     Q initial;
-    
     for (auto &e: p) {
         if (e.second.find(initialState_) != e.second.end())
             initial = e.first;
@@ -423,12 +421,13 @@ dfa dfa::hopcroft() {
     for (const auto &s: minimumDfa.states_) voc[s.first] = j++;
     std::unordered_set<Q> newfstates;
     for (const auto &s: minimumDfa.finalStates_) newfstates.insert(voc[s]);
-    dfa minDfa(voc[minimumDfa.initialState_], newfstates);
+    dfa mindfa(voc[minimumDfa.initialState_], newfstates);
     for (auto &s: minimumDfa.states_) {
         for (int i = 0; i < 2; ++i)
-            minDfa.addTransition(voc[s.first], i, voc[s.second[i]]);
+            mindfa.addTransition(voc[s.first], i, voc[s.second[i]]);
     }
-    return minDfa;
+    mindfa.eraseUnreachable();
+    return mindfa;
 }
 
 void dfa::printStates() {

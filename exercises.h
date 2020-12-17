@@ -25,6 +25,7 @@ void execute()
         exercise2(a);
         exercise3(a);
         exercise4(a);
+        exercise5(a);
         std::cout<<'\n';
     }
 }
