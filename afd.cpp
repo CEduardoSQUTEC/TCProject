@@ -204,7 +204,7 @@ std::vector<bool> dfa::reachableStates(){
     return visited;
 }
 
-void dfa::erasedUnreachable(){
+void dfa::eraseUnreachable(){
     // i just return a vector of bools because
     // i don't want to overcomplicated things
     auto reachable = reachableStates();
@@ -252,7 +252,7 @@ dfa dfa::huffmanMoore() {
     // toDO
     // erased unreachable and modify afs
 
-    erasedUnreachable();
+    eraseUnreachable();
 
     // eq states
     auto eq = improvedEquivalentStates();

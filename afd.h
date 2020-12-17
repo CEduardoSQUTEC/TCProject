@@ -59,7 +59,7 @@ public:
 
     std::vector<std::vector<bool>> improvedEquivalentStates();
 
-    void erasedUnreachable();
+    void eraseUnreachable();
 
     std::vector<bool> reachableStates();
 
