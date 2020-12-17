@@ -8,23 +8,29 @@ EJERCICIO 1: Brzozowski
 1 0 1 0
 0 1 0
 0 0 0
-Tiempo de ejecución: 0.1038 ms
+Tiempo de ejecución: 0.1048 ms
 
 EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 1
 1 1
-Tiempo de ejecución: 0.019 ms
+Tiempo de ejecución: 0.0206 ms
 
 EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 1 1
 1 1
-Tiempo de ejecución: 0.0433 ms
+Tiempo de ejecución: 0.0358 ms
 
 EJERCICIO 4: Algoritmo de Huffman-Moore
 1 0 1 0
 0 1 0
 0 0 0
-Tiempo de ejecución: 0.0451 ms
+Tiempo de ejecución: 0.0464 ms
+
+EJERCICIO 5: Algoritmo de Hopcroft
+1 0 1 0
+0 1 0
+0 0 0
+Tiempo de ejecución: 0.0592 ms
 
 
 ================================
@@ -36,19 +42,19 @@ EJERCICIO 1: Brzozowski
 0 0 1
 1 1 0
 1 0 1
-Tiempo de ejecución: 0.1675 ms
+Tiempo de ejecución: 0.1705 ms
 
 EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 0 0
 0 1 1
 0 1 1
-Tiempo de ejecución: 0.0211 ms
+Tiempo de ejecución: 0.0258 ms
 
 EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 1 0 0
 0 1 1
 0 1 1
-Tiempo de ejecución: 0.0301 ms
+Tiempo de ejecución: 0.0305 ms
 
 EJERCICIO 4: Algoritmo de Huffman-Moore
 2 0 1 1
@@ -56,6 +62,14 @@ EJERCICIO 4: Algoritmo de Huffman-Moore
 0 1 0
 1 0 1
 1 1 0
+Tiempo de ejecución: 0.0623 ms
+
+EJERCICIO 5: Algoritmo de Hopcroft
+2 1 1 0
+0 1 1
+0 0 0
+1 1 1
+1 0 0
 Tiempo de ejecución: 0.0744 ms
 
 
@@ -68,21 +82,21 @@ EJERCICIO 1: Brzozowski
 0 0 0
 1 1 0
 1 0 1
-Tiempo de ejecución: 0.1984 ms
+Tiempo de ejecución: 0.1412 ms
 
 EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 0 1 0
 0 1 0 1
 1 0 1 0
 0 1 0 1
-Tiempo de ejecución: 0.0334 ms
+Tiempo de ejecución: 0.0237 ms
 
 EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 1 0 1 0
 0 1 0 1
 1 0 1 0
 0 1 0 1
-Tiempo de ejecución: 0.0436 ms
+Tiempo de ejecución: 0.0332 ms
 
 EJERCICIO 4: Algoritmo de Huffman-Moore
 2 0 1 1
@@ -90,7 +104,15 @@ EJERCICIO 4: Algoritmo de Huffman-Moore
 0 0 0
 1 0 1
 1 1 0
-Tiempo de ejecución: 0.0993 ms
+Tiempo de ejecución: 0.0586 ms
+
+EJERCICIO 5: Algoritmo de Hopcroft
+2 1 1 0
+0 1 1
+0 0 0
+1 1 0
+1 0 1
+Tiempo de ejecución: 0.0665 ms
 
 
 ================================
@@ -106,7 +128,7 @@ EJERCICIO 1: Brzozowski
 2 0 1
 3 1 0
 3 0 1
-Tiempo de ejecución: 0.2588 ms
+Tiempo de ejecución: 0.2563 ms
 
 EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 0 1 0 0
@@ -114,7 +136,7 @@ EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 0 1 0 0
 0 0 0 1 0
 0 0 0 0 1
-Tiempo de ejecución: 0.1093 ms
+Tiempo de ejecución: 0.0702 ms
 
 EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 1 0 1 0 0
@@ -122,7 +144,7 @@ EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 1 0 1 0 0
 0 0 0 1 0
 0 0 0 0 1
-Tiempo de ejecución: 0.0625 ms
+Tiempo de ejecución: 0.0603 ms
 
 EJERCICIO 4: Algoritmo de Huffman-Moore
 4 0 1 3
@@ -134,7 +156,19 @@ EJERCICIO 4: Algoritmo de Huffman-Moore
 2 0 1
 3 0 1
 3 1 0
-Tiempo de ejecución: 0.1102 ms
+Tiempo de ejecución: 0.0909 ms
+
+EJERCICIO 5: Algoritmo de Hopcroft
+4 3 1 0
+0 1 3
+0 0 2
+1 1 0
+1 0 2
+2 1 1
+2 0 2
+3 1 3
+3 0 2
+Tiempo de ejecución: 0.1258 ms
 
 
 ================================
@@ -148,7 +182,7 @@ EJERCICIO 1: Brzozowski
 1 0 1
 2 1 2
 2 0 2
-Tiempo de ejecución: 0.1791 ms
+Tiempo de ejecución: 0.1289 ms
 
 EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 0 0 1 0 0
@@ -157,7 +191,7 @@ EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 0 0 1 0 0
 0 1 1 0 1 0
 0 0 0 0 0 1
-Tiempo de ejecución: 0.1877 ms
+Tiempo de ejecución: 0.0773 ms
 
 EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 1 0 0 1 0 0
@@ -166,7 +200,7 @@ EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 1 0 0 1 0 0
 0 1 1 0 1 0
 0 0 0 0 0 1
-Tiempo de ejecución: 0.1274 ms
+Tiempo de ejecución: 0.0684 ms
 
 EJERCICIO 4: Algoritmo de Huffman-Moore
 3 0 1 1
@@ -176,7 +210,17 @@ EJERCICIO 4: Algoritmo de Huffman-Moore
 1 0 1
 2 1 2
 2 0 2
-Tiempo de ejecución: 0.1965 ms
+Tiempo de ejecución: 0.1001 ms
+
+EJERCICIO 5: Algoritmo de Hopcroft
+3 2 1 0
+0 1 1
+0 0 0
+1 1 1
+1 0 1
+2 1 0
+2 0 2
+Tiempo de ejecución: 0.1065 ms
 
 
 ================================
@@ -194,7 +238,7 @@ EJERCICIO 1: Brzozowski
 3 0 4
 4 1 3
 4 0 1
-Tiempo de ejecución: 1.2496 ms
+Tiempo de ejecución: 0.5298 ms
 
 EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 1 0 0 0 0 0
@@ -204,7 +248,7 @@ EJERCICIO 2: Algoritmo de Equivalencia de estados
 0 0 0 0 1 1 0
 0 0 0 0 1 1 0
 0 0 0 0 0 0 1
-Tiempo de ejecución: 0.6059 ms
+Tiempo de ejecución: 0.0958 ms
 
 EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 1 1 0 0 0 0 0
@@ -214,7 +258,7 @@ EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 0 0 0 0 1 1 0
 0 0 0 0 1 1 0
 0 0 0 0 0 0 1
-Tiempo de ejecución: 0.3875 ms
+Tiempo de ejecución: 0.0945 ms
 
 EJERCICIO 4: Algoritmo de Huffman-Moore
 5 0 1 3
@@ -228,7 +272,21 @@ EJERCICIO 4: Algoritmo de Huffman-Moore
 3 1 2
 4 1 3
 4 0 1
-Tiempo de ejecución: 0.4092 ms
+Tiempo de ejecución: 0.1429 ms
+
+EJERCICIO 5: Algoritmo de Hopcroft
+5 1 1 0
+0 1 2
+0 0 4
+1 1 3
+1 0 1
+2 1 0
+2 0 1
+3 1 0
+3 0 2
+4 1 0
+4 0 3
+Tiempo de ejecución: 0.1801 ms
 
 
 ================================
@@ -246,7 +304,7 @@ EJERCICIO 1: Brzozowski
 3 0 3
 4 1 1
 4 0 0
-Tiempo de ejecución: 3.3133 ms
+Tiempo de ejecución: 1.0994 ms
 
 EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 0 0 0 1 0 0 0
@@ -257,7 +315,7 @@ EJERCICIO 2: Algoritmo de Equivalencia de estados
 0 0 0 1 0 1 0 0
 0 0 0 0 0 0 1 0
 0 1 0 0 0 0 0 1
-Tiempo de ejecución: 0.4155 ms
+Tiempo de ejecución: 0.1172 ms
 
 EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 1 0 0 0 1 0 0 0
@@ -268,7 +326,7 @@ EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 0 0 0 1 0 1 0 0
 0 0 0 0 0 0 1 0
 0 1 0 0 0 0 0 1
-Tiempo de ejecución: 0.5587 ms
+Tiempo de ejecución: 0.1433 ms
 
 EJERCICIO 4: Algoritmo de Huffman-Moore
 5 0 1 2
@@ -282,7 +340,21 @@ EJERCICIO 4: Algoritmo de Huffman-Moore
 3 0 2
 4 0 4
 4 1 0
-Tiempo de ejecución: 0.6782 ms
+Tiempo de ejecución: 0.1778 ms
+
+EJERCICIO 5: Algoritmo de Hopcroft
+5 3 1 0
+0 1 2
+0 0 3
+1 1 4
+1 0 0
+2 1 0
+2 0 4
+3 1 1
+3 0 2
+4 1 3
+4 0 4
+Tiempo de ejecución: 0.1775 ms
 
 
 ================================
@@ -296,7 +368,7 @@ EJERCICIO 1: Brzozowski
 1 0 2
 2 1 1
 2 0 0
-Tiempo de ejecución: 1.4924 ms
+Tiempo de ejecución: 0.4385 ms
 
 EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 0 0 1 0 0 1 0 0
@@ -308,7 +380,7 @@ EJERCICIO 2: Algoritmo de Equivalencia de estados
 1 0 0 1 0 0 1 0 0
 0 1 0 0 1 0 0 1 0
 0 0 1 0 0 1 0 0 1
-Tiempo de ejecución: 0.4707 ms
+Tiempo de ejecución: 0.1497 ms
 
 EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 1 0 0 1 0 0 1 0 0
@@ -320,7 +392,7 @@ EJERCICIO 3: Algoritmo de Equivalencia de estados mejorado
 1 0 0 1 0 0 1 0 0
 0 1 0 0 1 0 0 1 0
 0 0 1 0 0 1 0 0 1
-Tiempo de ejecución: 0.4375 ms
+Tiempo de ejecución: 0.1429 ms
 
 EJERCICIO 4: Algoritmo de Huffman-Moore
 3 0 1 2
@@ -330,4 +402,14 @@ EJERCICIO 4: Algoritmo de Huffman-Moore
 1 0 2
 2 1 1
 2 0 0
-Tiempo de ejecución: 0.8123 ms
+Tiempo de ejecución: 0.178 ms
+
+EJERCICIO 5: Algoritmo de Hopcroft
+3 1 1 0
+0 1 2
+0 0 1
+1 1 2
+1 0 2
+2 1 0
+2 0 0
+Tiempo de ejecución: 0.1447 ms
