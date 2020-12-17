@@ -406,6 +406,7 @@ dfa dfa::hopcroft() {
     }
     dfa minimumDfa(initial, fstates);
     for (auto &s: p) {
+        if (s.second.begin() == s.second.end()) continue;
         for (int i = 0; i < 2; ++i) {
             auto q = states_[*s.second.begin()][i];
             for (auto &ss: p) {
@@ -426,9 +427,10 @@ dfa dfa::hopcroft() {
         for (int i = 0; i < 2; ++i)
             mindfa.addTransition(voc[s.first], i, voc[s.second[i]]);
     }
-    mindfa.eraseUnreachable();
+    mindfa.erasedUnreachable();
     return mindfa;
 }
+
 
 void dfa::printStates() {
     for (int i = 0 ; i < states_.size();i++) {
