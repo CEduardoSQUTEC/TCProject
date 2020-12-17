@@ -65,6 +65,8 @@ public:
 
     dfa huffmanMoore();
 
+    dfa hopcroft();
+
     void printStates();
 
     void print();

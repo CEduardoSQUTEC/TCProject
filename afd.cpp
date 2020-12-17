@@ -1,5 +1,24 @@
 #include "afd.h"
 
+std::unordered_set<Q> unorderSetIntersection(const std::unordered_set<Q> &y, const std::unordered_set<Q> &x) {
+    std::unordered_set<Q> result;
+    if (y.size() > x.size()) {
+        for (const auto &e: x) if (y.find(e) != y.end()) result.insert(e);
+    } else {
+        for (const auto &e: y) if (x.find(e) != x.end()) result.insert(e);
+    }
+    return result;
+}
+
+std::unordered_set<Q> unorderSetSubtraction(const std::unordered_set<Q> &y, const std::unordered_set<Q> &x) {
+    std::unordered_set<Q> result;
+    for (const auto &e: y) {
+        if (x.find(e) == x.end())
+            result.insert(e);
+    }
+    return result;
+}
+
 std::unordered_set<Q> nfa::cl(std::unordered_set<Q> &set) {
     std::unordered_set<Q> newSet;
     for (auto &q: set) {
@@ -142,46 +161,66 @@ struct hash_pair {
     } 
 }; 
 
-std::vector<std::vector<bool>> dfa::improvedEquivalentStates(){
+std::vector<std::vector<bool>> dfa::improvedEquivalentStates() {
 
-    std::vector<std::vector<bool>> equivalent (states_.size(),
-                                               std::vector<bool>(states_.size(), true) );
-    std::unordered_map< std::pair< Q,Q >, std::vector<std::pair<Q,Q> >, hash_pair> dependencies;
-    std::queue< std::pair<Q,Q> > toProcess;
+    std::vector<std::vector<bool>> equivalent(states_.size(),
+                            std::vector<bool>(states_.size(), true));
+    std::map<std::pair<Q, Q>, std::vector<std::pair<Q, Q> > > dependencies;
+    std::queue<std::pair<Q, Q> > toProcess;
 
+    for (int i = 0; i < states_.size(); i++) {
+        for (int j = 0; j < i; j++) {
+            int x = states_[i][0];
+            int y = states_[j][0];
 
-    // we begin by marking all trivial not equivalent states
-    // we also create de map of dependecies
-    for(int i = 0; i < states_.size(); i++){
-        for(int j = 0; j < i ; j++){
-            dependencies[{states_[i][0] ,states_[j][0]}].push_back({i,j});
-            dependencies[{states_[i][1] ,states_[j][1]}].push_back({i,j});
+            if(x > y) dependencies[{x, y}].push_back({i, j});
+            else dependencies[{y, x}].push_back({i, j});
+
+            x = states_[i][1];
+            y = states_[j][1];
+
+            if(x > y) dependencies[{x, y}].push_back({i, j});
+            else dependencies[{y, x}].push_back({i, j});
         }
     }
 
+    // get all not final states
+    std::vector<Q> notFinal;
+    for(int i = 0; i < states_.size();i++){
+        if(finalStates_.find(i) == finalStates_.end()) notFinal.push_back(i);
+    }
 
-    for(int i = 0; i < states_.size(); i++){
-        for(int j = 0; j < i ; j++){
-            if(finalStates_.count(i) && !finalStates_.count(j) || finalStates_.count(j) && !finalStates_.count(i)){
-                equivalent[i][j] = false;
-                equivalent[j][i] = false;
-                toProcess.push({i,j});
+
+    for(auto i: finalStates_){
+        for(int j = 0; j < notFinal.size();j++){
+            equivalent[i][notFinal[j]] = equivalent[notFinal[j]][i] =  false;
+            if(i > notFinal[j]){
+                toProcess.push({i,notFinal[j]});
             }
+            else {
+                toProcess.push({notFinal[j], i});
+            }
+        }
+    }
 
-            while(!toProcess.empty()){
-              for(auto it: dependencies[toProcess.front()]){
-                if(equivalent[it.first][it.second]){
-                  equivalent[it.first][it.second] = false;   
-                  equivalent[it.second][it.first] = false;
-                  toProcess.push(it);
+    while (!toProcess.empty()) {
+        for (auto it: dependencies[toProcess.front()]) {
+            if (equivalent[it.first][it.second]) {
+                equivalent[it.first][it.second] = false;
+                equivalent[it.second][it.first] = false;
+                if(it.first > it.second){
+                    toProcess.push({it.first,it.second});
                 }
-              }
-              toProcess.pop();
+                else {
+                    toProcess.push({it.second, it.first});
+                }
             }
         }
+        toProcess.pop();
     }
+
     return equivalent;
-}
+}	
 
 std::vector<bool> dfa::reachableStates(){
     std::stack<Q> s;
@@ -205,8 +244,7 @@ std::vector<bool> dfa::reachableStates(){
 }
 
 void dfa::eraseUnreachable(){
-    // i just return a vector of bools because
-    // i don't want to overcomplicated things
+
     auto reachable = reachableStates();
     int counter {};
 
@@ -214,8 +252,7 @@ void dfa::eraseUnreachable(){
         if(i) counter++;
     }
 
-    // if all are reachable just
-    // don't
+    // if all are reachable just stop
     if(counter == states_.size()) return;
     counter = {};
     std::unordered_map<Q, Q> newStates{};
@@ -229,7 +266,7 @@ void dfa::eraseUnreachable(){
         }
     }
 
-    // modifiying the current states
+    // modify the current states
     std::unordered_map<Q, std::unordered_map<alphabet, Q>> res{};
     for(int i = 0; i < reachable.size();i++){
         if(reachable[i]){
@@ -250,8 +287,8 @@ void dfa::eraseUnreachable(){
 
 dfa dfa::huffmanMoore() {
     // toDO
-    // erased unreachable and modify afs
 
+    // erase unreachable states and modify afs
     eraseUnreachable();
 
     // eq states
@@ -261,7 +298,7 @@ dfa dfa::huffmanMoore() {
     int initS {};
     std::unordered_set<int> endS {};
 
-    // creating the blocks
+    // create the blocks
     for (int i = 0; i < eq.size() ; ++i) {
         std::unordered_set<int> block;
         if(!vis[i]){
@@ -284,10 +321,10 @@ dfa dfa::huffmanMoore() {
     dfa minDfa(initS,endS);
     
     for(int i = 0 ; i < newStates.size(); i++){
-        // getting any state from block n
+        // get any state from block n
         auto &block = newStates[i];
         int s = *block.begin();
-        // gettin transitions
+        // get transitions
         std::vector<int> tran{};
         std::vector<bool> found(2, false);
         tran.push_back(states_[s][0]);
@@ -305,6 +342,91 @@ dfa dfa::huffmanMoore() {
             }
             if(found[0] && found[1]) break;
         }
+    }
+    return minDfa;
+}
+
+dfa dfa::hopcroft() {
+    std::unordered_map<Q, std::unordered_set<Q>> p;
+    std::unordered_map<Q, std::unordered_set<Q>> w;
+    // Set two P and Q with final states and not final states.
+    p[0] = w[0] = finalStates_;
+    std::unordered_set<Q> noFinalstates;
+    for (const auto &e: states_) {
+        if (finalStates_.find(e.first) == finalStates_.end())
+            noFinalstates.insert(e.first);
+    }
+    p[1] = w[1] = noFinalstates;
+    int k = 2;
+
+    while (!w.empty()) {
+        auto a = w.begin()->second;
+        w.erase(w.begin());
+        for (int i = 0; i < 2; ++i) {
+            std::unordered_set<Q> x;
+            for (auto &s: states_) {
+                if (a.find(s.second[i]) != a.end())
+                    x.insert(s.first);
+            }
+            for (auto it = p.begin(); it != p.end(); ++it) {
+                auto inter = unorderSetIntersection(it->second, x);
+                auto sub = unorderSetSubtraction(it->second, x);
+                if (!inter.empty() && !sub.empty()) {
+                    bool pass = true;
+                    for (auto &s: w)
+                        if (s.second == it->second) {
+                            s.second = inter;
+                            w[k++] = sub;
+                            pass = false;
+                            break;
+                        }
+                    if (pass) {
+                        if (inter.size() <= sub.size()) w[k++] = inter;
+                        else w[k++] = sub;
+                    }
+                    it = p.erase(it);
+                    p[k++] = inter;
+                    p[k++] = sub;
+                }
+            }
+        }
+    }
+
+    Q initial;
+    
+    for (auto &e: p) {
+        if (e.second.find(initialState_) != e.second.end())
+            initial = e.first;
+    }
+    std::unordered_set<Q> fstates;
+    for (auto &e: p) {
+        for (auto &ee: e.second)
+            if (finalStates_.find(ee) != finalStates_.end()) {
+                fstates.insert(e.first);
+                break;
+            }
+    }
+    dfa minimumDfa(initial, fstates);
+    for (auto &s: p) {
+        for (int i = 0; i < 2; ++i) {
+            auto q = states_[*s.second.begin()][i];
+            for (auto &ss: p) {
+                if (ss.second.find(q) != ss.second.end()) {
+                    minimumDfa.addTransition(s.first, i, ss.first);
+                    break;
+                }
+            }
+        }
+    }
+    std::unordered_map<int, int> voc;
+    int j = 0;
+    for (const auto &s: minimumDfa.states_) voc[s.first] = j++;
+    std::unordered_set<Q> newfstates;
+    for (const auto &s: minimumDfa.finalStates_) newfstates.insert(voc[s]);
+    dfa minDfa(voc[minimumDfa.initialState_], newfstates);
+    for (auto &s: minimumDfa.states_) {
+        for (int i = 0; i < 2; ++i)
+            minDfa.addTransition(voc[s.first], i, voc[s.second[i]]);
     }
     return minDfa;
 }
