@@ -12,6 +12,8 @@ void exercise2(dfa &myAfd);
 
 void exercise3(dfa &myAfd);
 
+void exercise5(dfa &myAfd);
+
 void execute() {
     std::cout << "PROYECTO TEORÍA DE LA COMPUTACIÓN\n\n";
     int t;
@@ -19,9 +21,10 @@ void execute() {
     std::cin >> t;
     while (t--) {
         auto a = buildAFN();
-        exercise2(a);
-        exercise1(a);
-        //exercise3(a);
+//        exercise1(a);
+//        exercise2(a);
+//        exercise3(a);
+        exercise5(a);
         std::cout << '\n';
     }
 }
@@ -65,16 +68,16 @@ void exercise2(dfa &myAfd) {
     auto end = std::chrono::steady_clock::now();
 
     for (int i = 0; i < res.size(); i++) {
-        std::cout<<i<<" :";
+        std::cout << i << " :";
         for (int j = 0; j < res.size(); j++)
             std::cout << res[i][j] << ' ';
         std::cout << '\n';
     }
 
-    std::cout<<"   ";
+    std::cout << "   ";
     for (int j = 0; j < res.size(); j++)
         std::cout << j << ' ';
-    std::cout<<std::endl;
+    std::cout << std::endl;
 
     auto diff = end - start;
     std::cout << "Tiempo de ejecución: " << std::chrono::duration<double, std::milli>(diff).count() << " ms"
@@ -84,7 +87,7 @@ void exercise2(dfa &myAfd) {
 
     for (int i = 0; i < res.size(); i++) {
         for (int j = 0; j < res.size(); j++)
-            if(res1[i][j] != res[i][j]) throw ("XD");
+            if (res1[i][j] != res[i][j]) throw ("XD");
     }
 }
 
@@ -98,6 +101,17 @@ void exercise3(dfa &myAfd) {
             std::cout << res[i][j] << ' ';
         std::cout << '\n';
     }
+    auto diff = end - start;
+    std::cout << "Tiempo de ejecución: " << std::chrono::duration<double, std::milli>(diff).count() << " ms"
+              << std::endl;
+}
+
+void exercise5(dfa &myAfd) {
+    std::cout << "\nEJERCICIO 5: Algoritmo de Equivalencia de Hopcroft\n";
+    auto start = std::chrono::steady_clock::now();
+    auto res = myAfd.hopcroftMinimization();
+    auto end = std::chrono::steady_clock::now();
+    res.print();
     auto diff = end - start;
     std::cout << "Tiempo de ejecución: " << std::chrono::duration<double, std::milli>(diff).count() << " ms"
               << std::endl;

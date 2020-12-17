@@ -68,10 +68,11 @@ public:
 
     dfa huffman();
 
+    dfa hopcroftMinimization();
+
     void printStates();
 
     void print();
-
 };
 
 nfa reverse(const dfa &a);
