@@ -427,7 +427,7 @@ dfa dfa::hopcroft() {
         for (int i = 0; i < 2; ++i)
             mindfa.addTransition(voc[s.first], i, voc[s.second[i]]);
     }
-    mindfa.erasedUnreachable();
+    mindfa.eraseUnreachable();
     return mindfa;
 }
 
