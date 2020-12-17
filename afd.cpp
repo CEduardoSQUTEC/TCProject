@@ -379,6 +379,7 @@ dfa dfa::hopcroftMinimization() {
     }
     dfa minimumDfa(initial, fstates);
     for (auto &s: p) {
+        if (s.second.begin() == s.second.end()) continue;
         for (int i = 0; i < 2; ++i) {
             auto q = states_[*s.second.begin()][i];
             for (auto &ss: p) {
